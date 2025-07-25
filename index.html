@@ -106,6 +106,7 @@ label {
 <body>
   <h1>📊 Financial Criteria Checklist</h1>
   <button id="translateBtn">Русский</button>
+<span id="progressTracker"></span>
   <p id="progressTracker">0 of 6 criteria selected</p>
 
   <div class="criteria" id="group1" onclick="toggleCriteria(1)">
@@ -256,7 +257,6 @@ label {
 
     document.querySelector("h1").textContent = "📊 Чек-лист Финансовых Критериев";
     document.getElementById("translateBtn").textContent = "English";
-    document.getElementById("translateBtn").onclick = revertPage;
   }
 
   function revertPage() {
@@ -309,7 +309,18 @@ label {
 
     document.querySelector("h1").textContent = "📊 Financial Criteria Checklist";
     document.getElementById("translateBtn").textContent = "Русский";
-    document.getElementById("translateBtn").onclick = translatePage;
+
+    let translated = false;
+
+document.getElementById("translateBtn").addEventListener("click", () => {
+  if (translated) {
+    revertPage();
+  } else {
+    translatePage();
+  }
+  translated = !translated;
+});
+
   }
 </script>
 </body>
