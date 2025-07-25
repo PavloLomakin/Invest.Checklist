@@ -156,7 +156,7 @@
     cb.addEventListener("change", updateProgress);
   });
 
-  updateProgress(); // initialize count on page load
+  updateProgress();
 
   function translatePage() {
     const translations = [
@@ -191,43 +191,81 @@
       document.getElementById(`text${index + 1}`).textContent = item.text;
     });
 
+    // Translate new sections
+    document.querySelector(".extra-section h2").textContent = "🛠️ Базовые знания";
+    const ratioItems = document.querySelectorAll(".ratio-list li");
+    const translatedRatios = [
+      "Цена к прибыли: отражает цену акции относительно прибыли. Формула: Цена ÷ Прибыль на акцию.",
+      "PEG: учитывает рост при оценке. Формула: P/E ÷ Рост прибыли (%).",
+      "ROE: доходность на капитал. Формула: Чистая прибыль ÷ Собственный капитал.",
+      "ROA: доходность на активы. Формула: Чистая прибыль ÷ Активы.",
+      "Долг/Капитал: уровень задолженности. Формула: Обязательства ÷ Собственный капитал.",
+      "Текущий коэффициент: ликвидность. Формула: Текущие активы ÷ Текущие обязательства.",
+      "Быстрый коэффициент: ликвидность без запасов. Формула: (Активы – Запасы) ÷ Обязательства.",
+      "Дивидендная доходность: доход от дивидендов. Формула: Годовой дивиденд ÷ Цена акции.",
+      "Прибыль на акцию: прибыль на одну акцию. Формула: Чистая прибыль ÷ Кол-во акций.",
+      "Цена к балансовой стоимости: рыночная цена к стоимости. Формула: Цена ÷ Балансовая стоимость на акцию."
+    ];
+    ratioItems.forEach((li, i) => li.textContent = translatedRatios[i]);
+
+    document.querySelectorAll(".extra-section")[1].querySelector("h2").textContent = "🔗 Полезные ссылки";
+    const linkBlock = document.querySelectorAll(".extra-section")[1].querySelector("p");
+    linkBlock.innerHTML = `
+      Веб-сайт с анализом акций: <a href="https://stockanalysis.com/" target="_blank">StockAnalysis.com</a><br>
+      Мой ютуб канал о инвестициях: <a href="https://www.youtube.com/@PavloLomakin" target="_blank">YouTube: Павло Ломакин</a>
+    `;
+
     document.querySelector("h1").textContent = "📊 Чек-лист Финансовых Критериев";
     document.getElementById("translateBtn").textContent = "English";
     document.getElementById("translateBtn").onclick = revertPage;
   }
 
   function revertPage() {
-    const originals = [
-      {
-        label: "Previous 5-Year Revenue Growth of 50%",
-        text: "Think of a company like a football player or boxer—one that’s already successful is more likely to win in the future than one that’s not."
-      },
-      {
-        label: "Debt to Equity (DE) Ratio Less Than 1.5",
-        text: "Statistically, companies with lower debt tend to deliver better future results."
-      },
-      {
-        label: "<span class='tooltip' data-tooltip='Price/Earnings to Growth (PEG) is a ratio used to determine a stock’s value while factoring in growth.'>PEG</span> Ratio Under 1.5",
-        text: "Suggests reasonable stock pricing relative to growth potential."
-      },
-      {
-        label: "Positive Cash Flow",
-        text: "Consistent cash inflow gives a company a safety buffer during market downturns."
-      },
-      {
-        label: "Return on Equity (ROE) Above 20%",
-        text: "Strong ROE means the company turns $10 of investor capital into $12 or more."
-      },
-      {
-        label: "<span class='tooltip' data-tooltip='Is there growing demand for this company’s product or service?'>Future Market Demand</span>",
-        text: "Assess what customers, trends, and analysts say about future relevance."
-      }
+    const labelsEn = [
+      "Revenue growth over 50% in the last 5 years",
+      "Debt-to-equity ratio less than 1.5",
+      "<span class='tooltip' data-tooltip='PEG ratio helps assess valuation with respect to future growth.'>PEG ratio under 1.5</span>",
+      "Positive cash flow",
+      "ROE above 20%",
+      "<span class='tooltip' data-tooltip='Is there growing demand for the company’s product or service?'>Future market demand</span>"
     ];
 
-    originals.forEach((item, index) => {
-      document.querySelector(`label[for='criteria${index + 1}']`).innerHTML = item.label;
-      document.getElementById(`text${index + 1}`).textContent = item.text;
+    const textsEn = [
+      "Think of a company like an athlete — past success often predicts future wins.",
+      "Statistically, companies with lower debt tend to perform better going forward.",
+      "Indicates a fair stock price relative to growth potential.",
+      "Positive cash flow gives the company strength during downturns.",
+      "High ROE means the company is turning investments into solid profits.",
+      "Assess demand by checking what customers, industry and analysts are saying."
+    ];
+
+    labelsEn.forEach((label, i) => {
+      document.querySelector(`label[for='criteria${i + 1}']`).innerHTML = label;
+      document.getElementById(`text${i + 1}`).textContent = textsEn[i];
     });
+
+    document.querySelector(".extra-section h2").textContent = "🛠️ Basic Knowledge";
+    const ratioItems = document.querySelectorAll(".ratio-list li");
+    const originalRatios = [
+      "Price-to-Earnings: shows the price compared to earnings. Formula: Price ÷ Earnings per Share.",
+      "PEG Ratio: adjusts valuation for growth. Formula: P/E ÷ Earnings Growth (%).",
+      "ROE: Return on Equity. Formula: Net Income ÷ Shareholder Equity.",
+      "ROA: Return on Assets. Formula: Net Income ÷ Total Assets.",
+      "Debt-to-Equity: leverage level. Formula: Liabilities ÷ Shareholder Equity.",
+      "Current Ratio: liquidity measure. Formula: Current Assets ÷ Current Liabilities.",
+      "Quick Ratio: liquidity excluding inventory. Formula: (Assets - Inventory) ÷ Liabilities.",
+      "Dividend Yield: income from dividends. Formula: Annual Dividend ÷ Share Price.",
+      "Earnings Per Share: profit per share. Formula: Net Income ÷ Shares Outstanding.",
+      "Price-to-Book: market price vs value. Formula: Price ÷ Book Value per Share."
+    ];
+    ratioItems.forEach((li, i) => li.textContent = originalRatios[i]);
+
+    document.querySelectorAll(".extra-section")[1].querySelector("h2").textContent = "🔗 Useful Links";
+    const linkBlock = document.querySelectorAll(".extra-section")[1].querySelector("p");
+    linkBlock.innerHTML = `
+      Stock analysis site: <a href="https://stockanalysis.com/" target="_blank">StockAnalysis.com</a><br>
+      My YouTube channel on investing: <a href="https://www.youtube.com/@PavloLomakin" target="_blank">YouTube: Pavlo Lomakin</a>
+    `;
 
     document.querySelector("h1").textContent = "📊 Financial Criteria Checklist";
     document.getElementById("translateBtn").textContent = "Русский";
