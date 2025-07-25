@@ -190,8 +190,11 @@ label {
     document.getElementById("progressTracker").textContent = `${checked} of ${total} criteria selected`;
   }
 
+  
+
   // ✅ Run once to initialize tracker
   updateProgress();
+  document.getElementById("translateBtn").addEventListener("click", translatePage);
 
   // ✅ Translation functions
   function translatePage() {
