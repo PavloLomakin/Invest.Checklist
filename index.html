@@ -4,60 +4,73 @@
   <meta charset="UTF-8">
   <title>📊 Financial Criteria Checklist</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-      background-color: #f8f9fa;
-    }
-    h1 {
-      color: #333;
-    }
-    .criteria {
-      margin-bottom: 10px;
-      padding: 10px;
-      border-radius: 8px;
-      transition: background-color 0.3s ease;
-    }
-    .highlighted {
-      background-color: #d4edda;
-    }
-    label {
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .tooltip {
-      border-bottom: 1px dotted #000;
-      cursor: help;
-      position: relative;
-    }
-    .tooltip:hover::after {
-      content: attr(data-tooltip);
-      position: absolute;
-      background: #333;
-      color: #fff;
-      padding: 6px;
-      border-radius: 5px;
-      font-size: 0.85em;
-      top: 25px;
-      left: 0;
-      white-space: nowrap;
-      z-index: 1000;
-    }
-    #translateBtn {
-      margin-bottom: 20px;
-      padding: 8px 16px;
-      font-size: 1em;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    #progressTracker {
-      margin-bottom: 30px;
-      font-weight: bold;
-    }
-  </style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background-color: #f8f9fa;
+  }
+  h1 {
+    color: #333;
+  }
+  .criteria {
+    margin-bottom: 6px; /* reduced spacing between items */
+    padding: 8px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  .highlighted {
+    background-color: #d4edda;
+  }
+  label {
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .tooltip {
+    border-bottom: 1px dotted #000;
+    cursor: help;
+    position: relative;
+  }
+  .tooltip:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background: #333;
+    color: #fff;
+    padding: 6px;
+    border-radius: 5px;
+    font-size: 0.85em;
+    top: 25px;
+    left: 0;
+    white-space: nowrap;
+    z-index: 1000;
+  }
+  #translateBtn {
+    margin-bottom: 20px;
+    padding: 8px 16px;
+    font-size: 1em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  #progressTracker {
+    margin-bottom: 20px; /* slightly reduced spacing */
+    font-weight: bold;
+  }
+  .extra-section {
+    margin-top: 30px;
+    padding: 16px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+  }
+  .extra-section h2 {
+    margin-top: 0;
+  }
+  .ratio-list {
+    margin: 0;
+    padding-left: 20px;
+  }
+</style>
 </head>
 <body>
   <h1>📊 Financial Criteria Checklist</h1>
@@ -100,6 +113,27 @@
     <p id="text6">Assess what customers, trends, and analysts say about future relevance.</p>
   </div>
 
+  <div class="extra-section">
+  <h2>🛠️ Basic Knowledge</h2>
+  <ul class="ratio-list">
+    <li><strong>P/E Ratio</strong>: Price-to-Earnings. Measures share price relative to earnings per share. <em>Calculated as: Price ÷ EPS</em></li>
+    <li><strong>PEG Ratio</strong>: P/E to Growth. Adjusts P/E by growth rate. <em>Calculated as: P/E ÷ Earnings Growth %</em></li>
+    <li><strong>ROE</strong>: Return on Equity. Indicates how efficiently equity is used. <em>Calculated as: Net Income ÷ Shareholder's Equity</em></li>
+    <li><strong>ROA</strong>: Return on Assets. Measures profitability by total assets. <em>Calculated as: Net Income ÷ Total Assets</em></li>
+    <li><strong>Debt/Equity</strong>: Shows leverage level. <em>Calculated as: Total Liabilities ÷ Shareholder’s Equity</em></li>
+    <li><strong>Current Ratio</strong>: Liquidity indicator. <em>Calculated as: Current Assets ÷ Current Liabilities</em></li>
+    <li><strong>Quick Ratio</strong>: Conservative liquidity measure. <em>Calculated as: (Current Assets – Inventory) ÷ Current Liabilities</em></li>
+    <li><strong>Dividend Yield</strong>: Income from dividends. <em>Calculated as: Annual Dividend ÷ Share Price</em></li>
+    <li><strong>EPS</strong>: Earnings Per Share. Represents profitability per share. <em>Calculated as: Net Income ÷ Shares Outstanding</em></li>
+    <li><strong>Price-to-Book</strong>: Market value vs. book value. <em>Calculated as: Share Price ÷ Book Value per Share</em></li>
+  </ul>
+</div>
+
+<div class="extra-section">
+  <h2>🔗 Useful Links</h2>
+  <p>Website for free stock analysis: <a href="https://stockanalysis.com/" target="_blank">StockAnalysis.com</a></p>
+</div>
+
 <script>
   function toggleHighlight(checkboxId, groupId) {
     const checkbox = document.getElementById(checkboxId);
@@ -122,34 +156,40 @@
     cb.addEventListener("change", updateProgress);
   });
 
-  updateProgress();
+  updateProgress(); // initialize count on page load
 
   function translatePage() {
-    document.getElementById("text1").textContent =
-      "Подумайте о компании как о футболисте или боксёре — тот, кто уже успешен, скорее всего, победит и в будущем.";
-    document.getElementById("text2").textContent =
-      "Статистически компании с меньшим уровнем долга показывают лучшие результаты в будущем.";
-    document.getElementById("text3").textContent =
-      "Указывает на разумную цену акций по отношению к потенциалу роста.";
-    document.getElementById("text4").textContent =
-      "Положительный денежный поток даёт компании запас прочности в кризис.";
-    document.getElementById("text5").textContent =
-      "Высокий ROE показывает, что компания превращает инвестиции в значительную прибыль.";
-    document.getElementById("text6").textContent =
-      "Оцени спрос: что говорят клиенты, отрасль, аналитики?";
+    const translations = [
+      {
+        label: "Рост выручки за последние 5 лет на 50%",
+        text: "Подумайте о компании как о футболисте или боксёре — тот, кто уже успешен, скорее всего, победит и в будущем."
+      },
+      {
+        label: "Коэффициент долга к капиталу менее 1.5",
+        text: "Статистически компании с меньшим уровнем долга показывают лучшие результаты в будущем."
+      },
+      {
+        label: "<span class='tooltip' data-tooltip='Коэффициент PEG помогает определить стоимость акций с учётом потенциального роста.'>Коэффициент PEG менее 1.5</span>",
+        text: "Указывает на разумную цену акций по отношению к потенциалу роста."
+      },
+      {
+        label: "Положительный денежный поток",
+        text: "Положительный денежный поток даёт компании запас прочности в кризис."
+      },
+      {
+        label: "ROE выше 20%",
+        text: "Высокий ROE показывает, что компания превращает инвестиции в значительную прибыль."
+      },
+      {
+        label: "<span class='tooltip' data-tooltip='Есть ли растущий спрос на продукт или услугу компании?'>Будущий спрос на рынке</span>",
+        text: "Оцени спрос: что говорят клиенты, отрасль, аналитики?"
+      }
+    ];
 
-    document.querySelector("label[for='criteria1']").textContent =
-      "Рост выручки за последние 5 лет на 50%";
-    document.querySelector("label[for='criteria2']").textContent =
-      "Коэффициент долга к капиталу менее 1.5";
-    document.querySelector("label[for='criteria3']").innerHTML =
-      "<span class='tooltip' data-tooltip='Коэффициент PEG помогает определить стоимость акций с учётом потенциального роста.'>Коэффициент PEG менее 1.5</span>";
-    document.querySelector("label[for='criteria4']").textContent =
-      "Положительный денежный поток";
-    document.querySelector("label[for='criteria5']").textContent =
-      "ROE выше 20%";
-    document.querySelector("label[for='criteria6']").innerHTML =
-      "<span class='tooltip' data-tooltip='Есть ли растущий спрос на продукт или услугу компании?'>Будущий спрос на рынке</span>";
+    translations.forEach((item, index) => {
+      document.querySelector(`label[for='criteria${index + 1}']`).innerHTML = item.label;
+      document.getElementById(`text${index + 1}`).textContent = item.text;
+    });
 
     document.querySelector("h1").textContent = "📊 Чек-лист Финансовых Критериев";
     document.getElementById("translateBtn").textContent = "English";
@@ -157,31 +197,37 @@
   }
 
   function revertPage() {
-    document.getElementById("text1").textContent =
-      "Think of a company like a football player or boxer—one that’s already successful is more likely to win in the future than one that’s not.";
-    document.getElementById("text2").textContent =
-      "Statistically, companies with lower debt tend to deliver better future results.";
-    document.getElementById("text3").textContent =
-      "Suggests reasonable stock pricing relative to growth potential.";
-    document.getElementById("text4").textContent =
-      "Consistent cash inflow gives a company a safety buffer during market downturns.";
-    document.getElementById("text5").textContent =
-      "Strong ROE means the company turns $10 of investor capital into $12 or more.";
-    document.getElementById("text6").textContent =
-      "Assess what customers, trends, and analysts say about future relevance.";
+    const originals = [
+      {
+        label: "Previous 5-Year Revenue Growth of 50%",
+        text: "Think of a company like a football player or boxer—one that’s already successful is more likely to win in the future than one that’s not."
+      },
+      {
+        label: "Debt to Equity (DE) Ratio Less Than 1.5",
+        text: "Statistically, companies with lower debt tend to deliver better future results."
+      },
+      {
+        label: "<span class='tooltip' data-tooltip='Price/Earnings to Growth (PEG) is a ratio used to determine a stock’s value while factoring in growth.'>PEG</span> Ratio Under 1.5",
+        text: "Suggests reasonable stock pricing relative to growth potential."
+      },
+      {
+        label: "Positive Cash Flow",
+        text: "Consistent cash inflow gives a company a safety buffer during market downturns."
+      },
+      {
+        label: "Return on Equity (ROE) Above 20%",
+        text: "Strong ROE means the company turns $10 of investor capital into $12 or more."
+      },
+      {
+        label: "<span class='tooltip' data-tooltip='Is there growing demand for this company’s product or service?'>Future Market Demand</span>",
+        text: "Assess what customers, trends, and analysts say about future relevance."
+      }
+    ];
 
-    document.querySelector("label[for='criteria1']").textContent =
-      "Previous 5-Year Revenue Growth of 50%";
-    document.querySelector("label[for='criteria2']").textContent =
-      "Debt to Equity (DE) Ratio Less Than 1.5";
-    document.querySelector("label[for='criteria3']").innerHTML =
-      "<span class='tooltip' data-tooltip='Price/Earnings to Growth (PEG) is a ratio used to determine a stock’s value while factoring in growth.'>PEG</span> Ratio Under 1.5";
-    document.querySelector("label[for='criteria4']").textContent =
-      "Positive Cash Flow";
-    document.querySelector("label[for='criteria5']").textContent =
-      "Return on Equity (ROE) Above 20%";
-    document.querySelector("label[for='criteria6']").innerHTML =
-      "<span class='tooltip' data-tooltip='Is there growing demand for this company’s product or service?'>Future Market Demand</span>";
+    originals.forEach((item, index) => {
+      document.querySelector(`label[for='criteria${index + 1}']`).innerHTML = item.label;
+      document.getElementById(`text${index + 1}`).textContent = item.text;
+    });
 
     document.querySelector("h1").textContent = "📊 Financial Criteria Checklist";
     document.getElementById("translateBtn").textContent = "Русский";
