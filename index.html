@@ -2,111 +2,128 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>📊 Financial Criteria Checklist</title>
   <style>
   body {
-  font-family: Arial, sans-serif;
-  margin: 30px;
-  background-color: #f8f9fa;
-}
+    font-family: Arial, sans-serif;
+    margin: 30px;
+    background-color: #f8f9fa;
+    position: relative; /* Needed for absolute positioning of the button */
+  }
 
-h1 {
-  color: #333;
-}
+  h1 {
+    color: #333;
+    margin-top: 0; /* Adjust as needed for button positioning */
+  }
 
-.criteria {
-  cursor: pointer;
-  padding: 12px;
-  margin-bottom: 6px;
-  border-radius: 8px;
-  background-color: #f0f0f0;
-  transition: all 0.3s ease;
-}
+  .criteria {
+    cursor: pointer;
+    padding: 12px;
+    margin-bottom: 3px; /* Reduced spacing */
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    transition: all 0.3s ease;
+  }
 
-/* ✅ Hover effect for entire clickable block */
-.criteria:hover {
-  background-color: #cce5ff;
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
-  transform: scale(1.02);
-}
+  /* ✅ Hover effect for entire clickable block */
+  .criteria:hover {
+    background-color: #cce5ff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+    transform: scale(1.02);
+  }
 
-/* ✅ Highlighted checkbox block styling */
-.highlighted {
-  background-color: #d4edda;
-  box-shadow: 0 0 8px rgba(40, 167, 69, 0.4);
-}
+  /* ✅ Highlighted checkbox block styling */
+  .highlighted {
+    background-color: #d4edda;
+    box-shadow: 0 0 8px rgba(40, 167, 69, 0.4);
+  }
 
-/* ✅ Make label more clickable & visually pleasant */
-label {
-  display: inline-block;
-  padding: 5px 8px;
-  font-weight: bold;
-  cursor: pointer;
-}
+  /* ✅ Make label more clickable & visually pleasant */
+  label {
+    display: inline-block;
+    padding: 5px 8px;
+    font-weight: bold;
+    cursor: pointer;
+  }
 
-/* ✅ Tooltip styling */
-.tooltip {
-  border-bottom: 1px dotted #000;
-  cursor: help;
-  position: relative;
-}
+  /* ✅ Tooltip styling */
+  .tooltip {
+    border-bottom: 1px dotted #000;
+    cursor: help;
+    position: relative;
+  }
 
-.tooltip:hover::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  background: #333;
-  color: #fff;
-  padding: 6px;
-  border-radius: 5px;
-  font-size: 0.85em;
-  top: 25px;
-  left: 0;
-  white-space: nowrap;
-  z-index: 1000;
-}
+  .tooltip:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background: #333;
+    color: #fff;
+    padding: 6px;
+    border-radius: 5px;
+    font-size: 0.85em;
+    top: 25px;
+    left: 0;
+    white-space: nowrap;
+    z-index: 1000;
+  }
 
-/* ✅ Translate button styling */
-#translateBtn {
-  margin-bottom: 20px;
-  padding: 8px 16px;
-  font-size: 1em;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
+  /* ✅ Translate button styling */
+  #translateBtn {
+    position: absolute; /* Position absolutely */
+    top: 20px; /* Distance from top */
+    right: 20px; /* Distance from right */
+    padding: 8px 16px;
+    font-size: 1em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    z-index: 100; /* Ensure it's above other content */
+  }
 
-/* ✅ Progress text styling */
-#progressTracker {
-  margin-bottom: 20px;
-  font-weight: bold;
-}
+  /* ✅ Progress text styling */
+  #progressTracker {
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
 
-/* ✅ Extra sections block */
-.extra-section {
-  margin-top: 30px;
-  padding: 16px;
-  background-color: #e9ecef;
-  border-radius: 8px;
-}
+  /* ✅ Extra sections block */
+  .extra-section {
+    margin-top: 30px;
+    padding: 16px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+  }
 
-.extra-section h2 {
-  margin-top: 0;
-}
+  .extra-section h2 {
+    margin-top: 0;
+  }
 
-/* ✅ Financial Ratio List */
-.ratio-list {
-  margin: 0;
-  padding-left: 20px;
-}
+  /* ✅ List styling */
+  .ratio-list, .broker-list {
+    margin: 0;
+    padding-left: 20px;
+  }
 
-</style>
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    body {
+      margin: 15px;
+    }
+    #translateBtn {
+      top: 10px;
+      right: 10px;
+      padding: 6px 12px;
+      font-size: 0.9em;
+    }
+  }
+  </style>
 </head>
 <body>
   <h1>📊 Financial Criteria Checklist</h1>
   <button id="translateBtn">Русский</button>
-<span id="progressTracker"></span>
   <p id="progressTracker">0 of 6 criteria selected</p>
 
   <div class="criteria" id="group1" onclick="toggleCriteria(1)">
@@ -146,30 +163,40 @@ label {
   </div>
 
   <div class="extra-section">
-    <h2>🛠️ Basic Knowledge</h2>
+    <h2 id="basicKnowledgeTitle">🛠️ Basic Knowledge</h2>
     <ul class="ratio-list">
-      <li><strong>P/E Ratio</strong>: Price-to-Earnings. Measures share price relative to earnings per share. <em>Calculated as: Price ÷ EPS</em></li>
-      <li><strong>PEG Ratio</strong>: P/E to Growth. Adjusts P/E by growth rate. <em>Calculated as: P/E ÷ Earnings Growth %</em></li>
-      <li><strong>ROE</strong>: Return on Equity. Indicates how efficiently equity is used. <em>Calculated as: Net Income ÷ Shareholder's Equity</em></li>
-      <li><strong>ROA</strong>: Return on Assets. Measures profitability by total assets. <em>Calculated as: Net Income ÷ Total Assets</em></li>
-      <li><strong>Debt/Equity</strong>: Shows leverage level. <em>Calculated as: Total Liabilities ÷ Shareholder’s Equity</em></li>
-      <li><strong>Current Ratio</strong>: Liquidity indicator. <em>Calculated as: Current Assets ÷ Current Liabilities</em></li>
-      <li><strong>Quick Ratio</strong>: Conservative liquidity measure. <em>Calculated as: (Current Assets – Inventory) ÷ Current Liabilities</em></li>
-      <li><strong>Dividend Yield</strong>: Income from dividends. <em>Calculated as: Annual Dividend ÷ Share Price</em></li>
-      <li><strong>EPS</strong>: Earnings Per Share. Represents profitability per share. <em>Calculated as: Net Income ÷ Shares Outstanding</em></li>
-      <li><strong>Price-to-Book</strong>: Market value vs. book value. <em>Calculated as: Share Price ÷ Book Value per Share</em></li>
+      <li id="peRatio"><strong>P/E Ratio</strong>: Price-to-Earnings. Measures share price relative to earnings per share. <em>Calculated as: Price ÷ EPS</em></li>
+      <li id="pegRatio"><strong>PEG Ratio</strong>: P/E to Growth. Adjusts P/E by growth rate. <em>Calculated as: P/E ÷ Earnings Growth %</em></li>
+      <li id="roeRatio"><strong>ROE</strong>: Return on Equity. Indicates how efficiently equity is used. <em>Calculated as: Net Income ÷ Shareholder's Equity</em></li>
+      <li id="roaRatio"><strong>ROA</strong>: Return on Assets. Measures profitability by total assets. <em>Calculated as: Net Income ÷ Total Assets</em></li>
+      <li id="deRatio"><strong>Debt/Equity</strong>: Shows leverage level. <em>Calculated as: Total Liabilities ÷ Shareholder’s Equity</em></li>
+      <li id="currentRatio"><strong>Current Ratio</strong>: Liquidity indicator. <em>Calculated as: Current Assets ÷ Current Liabilities</em></li>
+      <li id="quickRatio"><strong>Quick Ratio</strong>: Conservative liquidity measure. <em>Calculated as: (Current Assets – Inventory) ÷ Current Liabilities</em></li>
+      <li id="dividendYield"><strong>Dividend Yield</strong>: Income from dividends. <em>Calculated as: Annual Dividend ÷ Share Price</em></li>
+      <li id="epsRatio"><strong>EPS</strong>: Earnings Per Share. Represents profitability per share. <em>Calculated as: Net Income ÷ Shares Outstanding</em></li>
+      <li id="pbRatio"><strong>Price-to-Book</strong>: Market value vs. book value. <em>Calculated as: Share Price ÷ Book Value per Share</em></li>
     </ul>
   </div>
 
   <div class="extra-section">
-    <h2>🔗 Useful Links</h2>
-    <p>
+    <h2 id="usefulLinksTitle">🔗 Useful Links</h2>
+    <p id="stockAnalysisLink">
       Website for free stock analysis: <a href="https://stockanalysis.com/" target="_blank">StockAnalysis.com</a><br>
       My YouTube channel on investing: <a href="https://www.youtube.com/@PavloLomakin" target="_blank">YouTube.com/@PavloLomakin</a>
     </p>
- </div>
+
+    <h2 id="recommendedBrokersTitle">🤝 Recommended Brokers</h2>
+    <ul class="broker-list">
+      <li id="ibkrLink">Interactive brokers (World wide) - <a href="https://ibkr.com/referral/pavlo272" target="_blank">ibkr.com</a></li>
+      <li id="questradeLink">Questrade (Canada) - <a href="https://login.questrade.com/registration" target="_blank">questrade.com/registration</a> use code 515724004489095 to get 50$ for free</li>
+      <li id="robinhoodLink">Robinhood (USA) - <a href="https://robinhood.com/us/en/" target="_blank">robinhood.com</a></li>
+    </ul>
+  </div>
 
 <script>
+  // Global variable to track translation state
+  let translated = false;
+
   // ✅ Handles full-block click toggling
   function toggleCriteria(index) {
     const checkbox = document.getElementById(`criteria${index}`);
@@ -190,12 +217,6 @@ label {
     }
     document.getElementById("progressTracker").textContent = `${checked} of ${total} criteria selected`;
   }
-
-  
-
-  // ✅ Run once to initialize tracker
-  updateProgress();
-  document.getElementById("translateBtn").addEventListener("click", translatePage);
 
   // ✅ Translation functions
   function translatePage() {
@@ -231,9 +252,8 @@ label {
       document.getElementById(`text${i + 1}`).textContent = item.text;
     });
 
-    document.querySelector(".extra-section h2").textContent = "🛠️ Базовые знания";
+    document.getElementById("basicKnowledgeTitle").textContent = "🛠️ Базовые знания";
 
-    const ratioItems = document.querySelectorAll(".ratio-list li");
     const translatedRatios = [
       "Цена к прибыли: отражает цену акции относительно прибыли. Формула: Цена ÷ Прибыль на акцию.",
       "PEG: учитывает рост при оценке. Формула: P/E ÷ Рост прибыли (%).",
@@ -246,14 +266,28 @@ label {
       "Прибыль на акцию: прибыль на одну акцию. Формула: Чистая прибыль ÷ Кол-во акций.",
       "Цена к балансовой стоимости: рыночная цена к стоимости. Формула: Цена ÷ Балансовая стоимость на акцию."
     ];
-    ratioItems.forEach((li, i) => li.textContent = translatedRatios[i]);
+    document.getElementById("peRatio").textContent = translatedRatios[0];
+    document.getElementById("pegRatio").textContent = translatedRatios[1];
+    document.getElementById("roeRatio").textContent = translatedRatios[2];
+    document.getElementById("roaRatio").textContent = translatedRatios[3];
+    document.getElementById("deRatio").textContent = translatedRatios[4];
+    document.getElementById("currentRatio").textContent = translatedRatios[5];
+    document.getElementById("quickRatio").textContent = translatedRatios[6];
+    document.getElementById("dividendYield").textContent = translatedRatios[7];
+    document.getElementById("epsRatio").textContent = translatedRatios[8];
+    document.getElementById("pbRatio").textContent = translatedRatios[9];
 
-    document.querySelectorAll(".extra-section")[1].querySelector("h2").textContent = "🔗 Полезные ссылки";
-    const linkBlock = document.querySelectorAll(".extra-section")[1].querySelector("p");
-    linkBlock.innerHTML = `
+    document.getElementById("usefulLinksTitle").textContent = "🔗 Полезные ссылки";
+    document.getElementById("stockAnalysisLink").innerHTML = `
       Веб-сайт для бесплатного Анализа Акций: <a href="https://stockanalysis.com/" target="_blank">StockAnalysis.com</a><br>
       Мой ютуб канал о Инвестициях: <a href="https://www.youtube.com/@PavloLomakin" target="_blank">YouTube.com/@PavloLomakin</a>
     `;
+
+    document.getElementById("recommendedBrokersTitle").textContent = "🤝 Рекомендуемые брокеры";
+    document.getElementById("ibkrLink").innerHTML = `Interactive brokers (По всему миру) - <a href="https://ibkr.com/referral/pavlo272" target="_blank">ibkr.com</a>`;
+    document.getElementById("questradeLink").innerHTML = `Questrade (Канада) - <a href="https://login.questrade.com/registration" target="_blank">questrade.com/registration</a> используйте код 515724004489095, чтобы получить 50$ бесплатно`;
+    document.getElementById("robinhoodLink").innerHTML = `Robinhood (США) - <a href="https://robinhood.com/us/en/" target="_blank">robinhood.com</a>`;
+
 
     document.querySelector("h1").textContent = "📊 Чек-лист Финансовых Критериев";
     document.getElementById("translateBtn").textContent = "English";
@@ -261,21 +295,21 @@ label {
 
   function revertPage() {
     const labelsEn = [
-      "Revenue growth over 50% in the last 5 years",
-      "Debt-to-equity ratio less than 1.5",
-      "<span class='tooltip' data-tooltip='PEG ratio helps assess valuation with respect to future growth.'>PEG ratio under 1.5</span>",
-      "Positive cash flow",
-      "ROE above 20%",
-      "<span class='tooltip' data-tooltip='Is there growing demand for the company’s product or service?'>Future market demand</span>"
+      "Previous 5-Year Revenue Growth of 50%",
+      "Debt to Equity (DE) Ratio Less Than 1.5",
+      "<span class='tooltip' data-tooltip='Price/Earnings to Growth (PEG) is a ratio used to determine a stock’s value while factoring in growth.'>PEG</span> Ratio Under 1.5",
+      "Positive Cash Flow",
+      "Return on Equity (ROE) Above 20%",
+      "<span class='tooltip' data-tooltip='Is there growing demand for this company’s product or service?'>Future Market Demand</span>"
     ];
 
     const textsEn = [
-      "Think of a company like an athlete — past success often predicts future wins.",
-      "Statistically, companies with lower debt tend to perform better going forward.",
-      "Indicates a fair stock price relative to growth potential.",
-      "Positive cash flow gives the company strength during downturns.",
-      "High ROE means the company is turning investments into solid profits.",
-      "Assess demand by checking what customers, industry and analysts are saying."
+      "Think of a company like a football player or boxer—one that’s already successful is more likely to win in the future than one that’s not.",
+      "Statistically, companies with lower debt tend to deliver better future results.",
+      "Suggests reasonable stock pricing relative to growth potential.",
+      "Consistent cash inflow gives a company a safety buffer during market downturns.",
+      "Strong ROE means the company turns $10 of investor capital into $12 or more.",
+      "Assess what customers, trends, and analysts say about future relevance."
     ];
 
     labelsEn.forEach((label, i) => {
@@ -283,45 +317,58 @@ label {
       document.getElementById(`text${i + 1}`).textContent = textsEn[i];
     });
 
-    document.querySelector(".extra-section h2").textContent = "🛠️ Basic Knowledge";
+    document.getElementById("basicKnowledgeTitle").textContent = "🛠️ Basic Knowledge";
 
-    const ratioItems = document.querySelectorAll(".ratio-list li");
     const originalRatios = [
-      "Price-to-Earnings: shows the price compared to earnings. Formula: Price ÷ Earnings per Share.",
-      "PEG Ratio: adjusts valuation for growth. Formula: P/E ÷ Earnings Growth (%).",
-      "ROE: Return on Equity. Formula: Net Income ÷ Shareholder Equity.",
-      "ROA: Return on Assets. Formula: Net Income ÷ Total Assets.",
-      "Debt-to-Equity: leverage level. Formula: Liabilities ÷ Shareholder Equity.",
-      "Current Ratio: liquidity measure. Formula: Current Assets ÷ Current Liabilities.",
-      "Quick Ratio: liquidity excluding inventory. Formula: (Assets - Inventory) ÷ Liabilities.",
-      "Dividend Yield: income from dividends. Formula: Annual Dividend ÷ Share Price.",
-      "Earnings Per Share: profit per share. Formula: Net Income ÷ Shares Outstanding.",
-      "Price-to-Book: market price vs value. Formula: Price ÷ Book Value per Share."
+      "P/E Ratio: Price-to-Earnings. Measures share price relative to earnings per share. Calculated as: Price ÷ EPS",
+      "PEG Ratio: P/E to Growth. Adjusts P/E by growth rate. Calculated as: P/E ÷ Earnings Growth %",
+      "ROE: Return on Equity. Indicates how efficiently equity is used. Calculated as: Net Income ÷ Shareholder's Equity",
+      "ROA: Return on Assets. Measures profitability by total assets. Calculated as: Net Income ÷ Total Assets",
+      "Debt/Equity: Shows leverage level. Calculated as: Total Liabilities ÷ Shareholder’s Equity",
+      "Current Ratio: Liquidity indicator. Calculated as: Current Assets ÷ Current Liabilities",
+      "Quick Ratio: Conservative liquidity measure. Calculated as: (Current Assets – Inventory) ÷ Current Liabilities",
+      "Dividend Yield: Income from dividends. Calculated as: Annual Dividend ÷ Share Price",
+      "EPS: Earnings Per Share. Represents profitability per share. Calculated as: Net Income ÷ Shares Outstanding",
+      "Price-to-Book: Market value vs. book value. Calculated as: Share Price ÷ Book Value per Share"
     ];
-    ratioItems.forEach((li, i) => li.textContent = originalRatios[i]);
+    document.getElementById("peRatio").textContent = originalRatios[0];
+    document.getElementById("pegRatio").textContent = originalRatios[1];
+    document.getElementById("roeRatio").textContent = originalRatios[2];
+    document.getElementById("roaRatio").textContent = originalRatios[3];
+    document.getElementById("deRatio").textContent = originalRatios[4];
+    document.getElementById("currentRatio").textContent = originalRatios[5];
+    document.getElementById("quickRatio").textContent = originalRatios[6];
+    document.getElementById("dividendYield").textContent = originalRatios[7];
+    document.getElementById("epsRatio").textContent = originalRatios[8];
+    document.getElementById("pbRatio").textContent = originalRatios[9];
 
-    document.querySelectorAll(".extra-section")[1].querySelector("h2").textContent = "🔗 Useful Links";
-    const linkBlock = document.querySelectorAll(".extra-section")[1].querySelector("p");
-    linkBlock.innerHTML = `
+    document.getElementById("usefulLinksTitle").textContent = "🔗 Useful Links";
+    document.getElementById("stockAnalysisLink").innerHTML = `
       Website for free stock analysis: <a href="https://stockanalysis.com/" target="_blank">StockAnalysis.com</a><br>
       My YouTube channel on investing: <a href="https://www.youtube.com/@PavloLomakin" target="_blank">YouTube.com/@PavloLomakin</a>
     `;
 
+    document.getElementById("recommendedBrokersTitle").textContent = "🤝 Recommended Brokers";
+    document.getElementById("ibkrLink").innerHTML = `Interactive brokers (World wide) - <a href="https://ibkr.com/referral/pavlo272" target="_blank">https://ibkr.com/referral/pavlo272</a>`;
+    document.getElementById("questradeLink").innerHTML = `Questrade (Canada) - <a href="https://login.questrade.com/registration" target="_blank">https://login.questrade.com/registration</a> use code 515724004489095 to get 50$ for free`;
+    document.getElementById("robinhoodLink").innerHTML = `Robinhood (USA) - <a href="https://robinhood.com/us/en/" target="_blank">https://robinhood.com/us/en/</a>`;
+
+
     document.querySelector("h1").textContent = "📊 Financial Criteria Checklist";
     document.getElementById("translateBtn").textContent = "Русский";
-
-    let translated = false;
-
-document.getElementById("translateBtn").addEventListener("click", () => {
-  if (translated) {
-    revertPage();
-  } else {
-    translatePage();
   }
-  translated = !translated;
-});
 
-  }
+  // ✅ Run once to initialize tracker
+  updateProgress();
+
+  document.getElementById("translateBtn").addEventListener("click", () => {
+    if (translated) {
+      revertPage();
+    } else {
+      translatePage();
+    }
+    translated = !translated;
+  });
 </script>
 </body>
 </html>
