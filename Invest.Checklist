@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>📊 Financial Criteria Checklist</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f8f9fa;
+    }
+    h1 {
+      color: #333;
+    }
+    .criteria {
+      margin-bottom: 20px;
+      padding: 10px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+    .highlighted {
+      background-color: #d4edda;
+    }
+    label {
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .tooltip {
+      border-bottom: 1px dotted #000;
+      cursor: help;
+      position: relative;
+    }
+    .tooltip:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      background: #333;
+      color: #fff;
+      padding: 6px;
+      border-radius: 5px;
+      font-size: 0.85em;
+      top: 25px;
+      left: 0;
+      white-space: nowrap;
+      z-index: 1000;
+    }
+    #translateBtn {
+      margin-bottom: 20px;
+      padding: 8px 16px;
+      font-size: 1em;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #progressTracker {
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>📊 Financial Criteria Checklist</h1>
+  <button id="translateBtn" onclick="translatePage()">Русский</button>
+  <p id="progressTracker">0 of 6 criteria selected</p>
+
+  <div class="criteria" id="group1">
+    <input type="checkbox" id="criteria1" onchange="toggleHighlight('criteria1', 'group1'); updateProgress();">
+    <label for="criteria1">Previous 5-Year Revenue Growth of 50%</label>
+    <p id="text1">Think of a company like a football player or boxer—one that’s already successful is more likely to win in the future than one that’s not.</p>
+  </div>
+
+  <div class="criteria" id="group2">
+    <input type="checkbox" id="criteria2" onchange="toggleHighlight('criteria2', 'group2'); updateProgress();">
+    <label for="criteria2">Debt to Equity (DE) Ratio Less Than 1.5</label>
+    <p id="text2">Statistically, companies with lower debt tend to deliver better future results.</p>
+  </div>
+
+  <div class="criteria" id="group3">
+    <input type="checkbox" id="criteria3" onchange="toggleHighlight('criteria3', 'group3'); updateProgress();">
+    <label for="criteria3"><span class="tooltip" data-tooltip="Price/Earnings to Growth (PEG) is a ratio used to determine a stock’s value while factoring in growth.">PEG</span> Ratio Under 1.5</label>
+    <p id="text3">Suggests reasonable stock pricing relative to growth potential.</p>
+  </div>
+
+  <div class="criteria" id="group4">
+    <input type="checkbox" id="criteria4" onchange="toggleHighlight('criteria4', 'group4'); updateProgress();">
+    <label for="criteria4">Positive Cash Flow</label>
+    <p id="text4">Consistent cash inflow gives a company a safety buffer during market downturns.</p>
+  </div>
+
+  <div class="criteria" id="group5">
+    <input type="checkbox" id="criteria5" onchange="toggleHighlight('criteria5', 'group5'); updateProgress();">
+    <label for="criteria5">Return on Equity (ROE) Above 20%</label>
+    <p id="text5">Strong ROE means the company turns $1 of investor capital into $2 or more.</p>
+  </div>
+
+  <div class="criteria" id="group6">
+    <input type="checkbox" id="criteria6" onchange="toggleHighlight('criteria6', 'group6'); updateProgress();">
+    <label for="criteria6"><span class="tooltip" data-tooltip="Is there growing demand for this company’s product or service?">Future Market Demand</span></label>
+    <p id="text6">Assess what customers, trends, and analysts say about future relevance.</p>
+  </div>
+
+<script>
+  function toggleHighlight(checkboxId, groupId) {
+    const checkbox = document.getElementById(checkboxId);
+    const group = document.getElementById(groupId);
+    group.classList.toggle("highlighted", checkbox.checked);
+  }
+
+  function updateProgress() {
+    const total = 6;
+    let checked = 0;
+    for (let i = 1; i <= total; i++) {
+      if (document.getElementById(`criteria${i}`).checked) {
+        checked++;
+      }
+    }
+    document.getElementById("progressTracker").textContent = `${checked} of ${total} criteria selected`;
+  }
+
+  document.querySelectorAll("input[type='checkbox']").forEach(cb => {
+    cb.addEventListener("change", updateProgress);
+  });
+
+  updateProgress();
+
+  function translatePage() {
+    document.getElementById("text1").textContent =
+      "Подумайте о компании как о футболисте или боксёре — тот, кто уже успешен, скорее всего, победит и в будущем.";
+    document.getElementById("text2").textContent =
+      "Статистически компании с меньшим уровнем долга показывают лучшие результаты в будущем.";
+    document.getElementById("text3").textContent =
+      "Указывает на разумную цену акций по отношению к потенциалу роста.";
+    document.getElementById("text4").textContent =
+      "Положительный денежный поток даёт компании запас прочности в кризис.";
+    document.getElementById("text5").textContent =
+      "Высокий ROE показывает, что компания превращает инвестиции в значительную прибыль.";
+    document.getElementById("text6").textContent =
+      "Оцени спрос: что говорят клиенты, отрасль, аналитики?";
+
+    document.querySelector("label[for='criteria1']").textContent =
+      "Рост выручки за последние 5 лет на 50%";
+    document.querySelector("label[for='criteria2']").textContent =
+      "Коэффициент долга к капиталу менее 1.5";
+    document.querySelector("label[for='criteria3']").innerHTML =
+      "<span class='tooltip' data-tooltip='Коэффициент PEG помогает определить стоимость акций с учётом потенциального роста.'>Коэффициент PEG менее 1.5</span>";
+    document.querySelector("label[for='criteria4']").textContent =
+      "Положительный денежный поток";
+    document.querySelector("label[for='criteria5']").textContent =
+      "ROE выше 20%";
+    document.querySelector("label[for='criteria6']").innerHTML =
+      "<span class='tooltip' data-tooltip='Есть ли растущий спрос на продукт или услугу компании?'>Будущий спрос на рынке</span>";
+
+    document.querySelector("h1").textContent = "📊 Чек-лист Финансовых Критериев";
+    document.getElementById("translateBtn").textContent = "English";
+    document.getElementById("translateBtn").onclick = revertPage;
+  }
+
+  function revertPage() {
+    document.getElementById("text1").textContent =
+      "Think of a company like a football player or boxer—one that’s already successful is more likely to win in the future than one that’s not.";
+    document.getElementById("text2").textContent =
+      "Statistically, companies with lower debt tend to deliver better future results.";
+    document.getElementById("text3").textContent =
+      "Suggests reasonable stock pricing relative to growth potential.";
+    document.getElementById("text4").textContent =
+      "Consistent cash inflow gives a company a safety buffer during market downturns.";
+    document.getElementById("text5").textContent =
+      "Strong ROE means the company turns $1 of investor capital into $2 or more.";
+    document.getElementById("text6").textContent =
+      "Assess what customers, trends, and analysts say about future relevance.";
+
+    document.querySelector("label[for='criteria1']").textContent =
+      "Previous 5-Year Revenue Growth of 50%";
+    document.querySelector("label[for='criteria2']").textContent =
+      "Debt to Equity (DE) Ratio Less Than 1.5";
+    document.querySelector("label[for='criteria3']").innerHTML =
+      "<span class='tooltip' data-tooltip='Price/Earnings to Growth (PEG) is a ratio used to determine a stock’s value while factoring in growth.'>PEG</span> Ratio Under 1.5";
+    document.querySelector("label[for='criteria4']").textContent =
+      "Positive Cash Flow";
+    document.querySelector("label[for='criteria5']").textContent =
+      "Return on Equity (ROE) Above 20%";
+    document.querySelector("label[for='criteria6']").innerHTML =
+      "<span class='tooltip' data-tooltip='Is there growing demand for this company’s product or service?'>Future Market Demand</span>";
+
+    document.querySelector("h1").textContent = "📊 Financial Criteria Checklist";
+    document.getElementById("translateBtn").textContent = "Русский";
+    document.getElementById("translateBtn").onclick = translatePage;
+  }
+</script>
+</body>
+</html>
