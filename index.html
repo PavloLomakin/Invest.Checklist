@@ -5,152 +5,180 @@
   <title>📊 Financial Criteria Checklist</title>
   <style>
   body {
-    font-family: Arial, sans-serif;
-    margin: 30px;
-    background-color: #f8f9fa;
-  }
-  h1 {
-    color: #333;
-  }
-  .criteria {
-    margin-bottom: 6px; /* reduced spacing between items */
-    padding: 8px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-  }
-  .highlighted {
-    background-color: #d4edda;
-  }
-  label {
-    cursor: pointer;
-    font-weight: bold;
-  }
-  .tooltip {
-    border-bottom: 1px dotted #000;
-    cursor: help;
-    position: relative;
-  }
-  .tooltip:hover::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    background: #333;
-    color: #fff;
-    padding: 6px;
-    border-radius: 5px;
-    font-size: 0.85em;
-    top: 25px;
-    left: 0;
-    white-space: nowrap;
-    z-index: 1000;
-  }
-  #translateBtn {
-    margin-bottom: 20px;
-    padding: 8px 16px;
-    font-size: 1em;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  #progressTracker {
-    margin-bottom: 20px; /* slightly reduced spacing */
-    font-weight: bold;
-  }
-  .extra-section {
-    margin-top: 30px;
-    padding: 16px;
-    background-color: #e9ecef;
-    border-radius: 8px;
-  }
-  .extra-section h2 {
-    margin-top: 0;
-  }
-  .ratio-list {
-    margin: 0;
-    padding-left: 20px;
-  }
-    .criteria:hover {
-  background-color: #cce5ff; /* Light blue highlight on hover */
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.4); /* Soft glow */
-  transform: scale(1.02); /* Slight zoom effect */
-  transition: all 0.3s ease; /* Smooth transition */
+  font-family: Arial, sans-serif;
+  margin: 30px;
+  background-color: #f8f9fa;
+}
+
+h1 {
+  color: #333;
+}
+
+.criteria {
+  cursor: pointer;
+  padding: 12px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+/* ✅ Hover effect for entire clickable block */
+.criteria:hover {
+  background-color: #cce5ff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+  transform: scale(1.02);
+}
+
+/* ✅ Highlighted checkbox block styling */
+.highlighted {
+  background-color: #d4edda;
+  box-shadow: 0 0 8px rgba(40, 167, 69, 0.4);
+}
+
+/* ✅ Make label more clickable & visually pleasant */
+label {
+  display: inline-block;
+  padding: 5px 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ✅ Tooltip styling */
+.tooltip {
+  border-bottom: 1px dotted #000;
+  cursor: help;
+  position: relative;
+}
+
+.tooltip:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  background: #333;
+  color: #fff;
+  padding: 6px;
+  border-radius: 5px;
+  font-size: 0.85em;
+  top: 25px;
+  left: 0;
+  white-space: nowrap;
+  z-index: 1000;
+}
+
+/* ✅ Translate button styling */
+#translateBtn {
+  margin-bottom: 20px;
+  padding: 8px 16px;
+  font-size: 1em;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ✅ Progress text styling */
+#progressTracker {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* ✅ Extra sections block */
+.extra-section {
+  margin-top: 30px;
+  padding: 16px;
+  background-color: #e9ecef;
+  border-radius: 8px;
+}
+
+.extra-section h2 {
+  margin-top: 0;
+}
+
+/* ✅ Financial Ratio List */
+.ratio-list {
+  margin: 0;
+  padding-left: 20px;
 }
 
 </style>
 </head>
 <body>
   <h1>📊 Financial Criteria Checklist</h1>
-  <button id="translateBtn" onclick="translatePage()">Русский</button>
+  <button id="translateBtn">Русский</button>
   <p id="progressTracker">0 of 6 criteria selected</p>
 
-  <div class="criteria" id="group1">
-    <input type="checkbox" id="criteria1" onchange="toggleHighlight('criteria1', 'group1'); updateProgress();">
+  <div class="criteria" id="group1" onclick="toggleCriteria(1)">
+    <input type="checkbox" id="criteria1" style="display: none;">
     <label for="criteria1">Previous 5-Year Revenue Growth of 50%</label>
     <p id="text1">Think of a company like a football player or boxer—one that’s already successful is more likely to win in the future than one that’s not.</p>
   </div>
 
-  <div class="criteria" id="group2">
-    <input type="checkbox" id="criteria2" onchange="toggleHighlight('criteria2', 'group2'); updateProgress();">
+  <div class="criteria" id="group2" onclick="toggleCriteria(2)">
+    <input type="checkbox" id="criteria2" style="display: none;">
     <label for="criteria2">Debt to Equity (DE) Ratio Less Than 1.5</label>
     <p id="text2">Statistically, companies with lower debt tend to deliver better future results.</p>
   </div>
 
-  <div class="criteria" id="group3">
-    <input type="checkbox" id="criteria3" onchange="toggleHighlight('criteria3', 'group3'); updateProgress();">
+  <div class="criteria" id="group3" onclick="toggleCriteria(3)">
+    <input type="checkbox" id="criteria3" style="display: none;">
     <label for="criteria3"><span class="tooltip" data-tooltip="Price/Earnings to Growth (PEG) is a ratio used to determine a stock’s value while factoring in growth.">PEG</span> Ratio Under 1.5</label>
     <p id="text3">Suggests reasonable stock pricing relative to growth potential.</p>
   </div>
 
-  <div class="criteria" id="group4">
-    <input type="checkbox" id="criteria4" onchange="toggleHighlight('criteria4', 'group4'); updateProgress();">
+  <div class="criteria" id="group4" onclick="toggleCriteria(4)">
+    <input type="checkbox" id="criteria4" style="display: none;">
     <label for="criteria4">Positive Cash Flow</label>
     <p id="text4">Consistent cash inflow gives a company a safety buffer during market downturns.</p>
   </div>
 
-  <div class="criteria" id="group5">
-    <input type="checkbox" id="criteria5" onchange="toggleHighlight('criteria5', 'group5'); updateProgress();">
+  <div class="criteria" id="group5" onclick="toggleCriteria(5)">
+    <input type="checkbox" id="criteria5" style="display: none;">
     <label for="criteria5">Return on Equity (ROE) Above 20%</label>
     <p id="text5">Strong ROE means the company turns $10 of investor capital into $12 or more.</p>
   </div>
 
-  <div class="criteria" id="group6">
-    <input type="checkbox" id="criteria6" onchange="toggleHighlight('criteria6', 'group6'); updateProgress();">
+  <div class="criteria" id="group6" onclick="toggleCriteria(6)">
+    <input type="checkbox" id="criteria6" style="display: none;">
     <label for="criteria6"><span class="tooltip" data-tooltip="Is there growing demand for this company’s product or service?">Future Market Demand</span></label>
     <p id="text6">Assess what customers, trends, and analysts say about future relevance.</p>
   </div>
 
   <div class="extra-section">
-  <h2>🛠️ Basic Knowledge</h2>
-  <ul class="ratio-list">
-    <li><strong>P/E Ratio</strong>: Price-to-Earnings. Measures share price relative to earnings per share. <em>Calculated as: Price ÷ EPS</em></li>
-    <li><strong>PEG Ratio</strong>: P/E to Growth. Adjusts P/E by growth rate. <em>Calculated as: P/E ÷ Earnings Growth %</em></li>
-    <li><strong>ROE</strong>: Return on Equity. Indicates how efficiently equity is used. <em>Calculated as: Net Income ÷ Shareholder's Equity</em></li>
-    <li><strong>ROA</strong>: Return on Assets. Measures profitability by total assets. <em>Calculated as: Net Income ÷ Total Assets</em></li>
-    <li><strong>Debt/Equity</strong>: Shows leverage level. <em>Calculated as: Total Liabilities ÷ Shareholder’s Equity</em></li>
-    <li><strong>Current Ratio</strong>: Liquidity indicator. <em>Calculated as: Current Assets ÷ Current Liabilities</em></li>
-    <li><strong>Quick Ratio</strong>: Conservative liquidity measure. <em>Calculated as: (Current Assets – Inventory) ÷ Current Liabilities</em></li>
-    <li><strong>Dividend Yield</strong>: Income from dividends. <em>Calculated as: Annual Dividend ÷ Share Price</em></li>
-    <li><strong>EPS</strong>: Earnings Per Share. Represents profitability per share. <em>Calculated as: Net Income ÷ Shares Outstanding</em></li>
-    <li><strong>Price-to-Book</strong>: Market value vs. book value. <em>Calculated as: Share Price ÷ Book Value per Share</em></li>
-  </ul>
-</div>
+    <h2>🛠️ Basic Knowledge</h2>
+    <ul class="ratio-list">
+      <li><strong>P/E Ratio</strong>: Price-to-Earnings. Measures share price relative to earnings per share. <em>Calculated as: Price ÷ EPS</em></li>
+      <li><strong>PEG Ratio</strong>: P/E to Growth. Adjusts P/E by growth rate. <em>Calculated as: P/E ÷ Earnings Growth %</em></li>
+      <li><strong>ROE</strong>: Return on Equity. Indicates how efficiently equity is used. <em>Calculated as: Net Income ÷ Shareholder's Equity</em></li>
+      <li><strong>ROA</strong>: Return on Assets. Measures profitability by total assets. <em>Calculated as: Net Income ÷ Total Assets</em></li>
+      <li><strong>Debt/Equity</strong>: Shows leverage level. <em>Calculated as: Total Liabilities ÷ Shareholder’s Equity</em></li>
+      <li><strong>Current Ratio</strong>: Liquidity indicator. <em>Calculated as: Current Assets ÷ Current Liabilities</em></li>
+      <li><strong>Quick Ratio</strong>: Conservative liquidity measure. <em>Calculated as: (Current Assets – Inventory) ÷ Current Liabilities</em></li>
+      <li><strong>Dividend Yield</strong>: Income from dividends. <em>Calculated as: Annual Dividend ÷ Share Price</em></li>
+      <li><strong>EPS</strong>: Earnings Per Share. Represents profitability per share. <em>Calculated as: Net Income ÷ Shares Outstanding</em></li>
+      <li><strong>Price-to-Book</strong>: Market value vs. book value. <em>Calculated as: Share Price ÷ Book Value per Share</em></li>
+    </ul>
+  </div>
 
-<div class="extra-section">
-  <h2>🔗 Useful Links</h2>
-  <p>
-    Website for free stock analysis: <a href="https://stockanalysis.com/" target="_blank">StockAnalysis.com</a><br>
-    My YouTube channel on investing: <a href="https://www.youtube.com/@PavloLomakin" target="_blank">youtube.com/@PavloLomakin</a>
-  </p>
-</div>
+  <div class="extra-section">
+    <h2>🔗 Useful Links</h2>
+    <p>
+      Website for free stock analysis: <a href="https://stockanalysis.com/" target="_blank">StockAnalysis.com</a><br>
+      My YouTube channel on investing: <a href="https://www.youtube.com/@PavloLomakin" target="_blank">YouTube.com/@PavloLomakin</a>
+    </p>
+ </div>
 
 <script>
-  function toggleHighlight(checkboxId, groupId) {
-    const checkbox = document.getElementById(checkboxId);
-    const group = document.getElementById(groupId);
+  // ✅ Handles full-block click toggling
+  function toggleCriteria(index) {
+    const checkbox = document.getElementById(`criteria${index}`);
+    const group = document.getElementById(`group${index}`);
+    checkbox.checked = !checkbox.checked;
     group.classList.toggle("highlighted", checkbox.checked);
+    updateProgress();
   }
 
+  // ✅ Updates the progress tracker
   function updateProgress() {
     const total = 6;
     let checked = 0;
@@ -162,12 +190,10 @@
     document.getElementById("progressTracker").textContent = `${checked} of ${total} criteria selected`;
   }
 
-  document.querySelectorAll("input[type='checkbox']").forEach(cb => {
-    cb.addEventListener("change", updateProgress);
-  });
-
+  // ✅ Run once to initialize tracker
   updateProgress();
 
+  // ✅ Translation functions
   function translatePage() {
     const translations = [
       {
@@ -196,13 +222,13 @@
       }
     ];
 
-    translations.forEach((item, index) => {
-      document.querySelector(`label[for='criteria${index + 1}']`).innerHTML = item.label;
-      document.getElementById(`text${index + 1}`).textContent = item.text;
+    translations.forEach((item, i) => {
+      document.querySelector(`label[for='criteria${i + 1}']`).innerHTML = item.label;
+      document.getElementById(`text${i + 1}`).textContent = item.text;
     });
 
-    // Translate new sections
     document.querySelector(".extra-section h2").textContent = "🛠️ Базовые знания";
+
     const ratioItems = document.querySelectorAll(".ratio-list li");
     const translatedRatios = [
       "Цена к прибыли: отражает цену акции относительно прибыли. Формула: Цена ÷ Прибыль на акцию.",
@@ -255,6 +281,7 @@
     });
 
     document.querySelector(".extra-section h2").textContent = "🛠️ Basic Knowledge";
+
     const ratioItems = document.querySelectorAll(".ratio-list li");
     const originalRatios = [
       "Price-to-Earnings: shows the price compared to earnings. Formula: Price ÷ Earnings per Share.",
@@ -273,8 +300,8 @@
     document.querySelectorAll(".extra-section")[1].querySelector("h2").textContent = "🔗 Useful Links";
     const linkBlock = document.querySelectorAll(".extra-section")[1].querySelector("p");
     linkBlock.innerHTML = `
-      Stock analysis site: <a href="https://stockanalysis.com/" target="_blank">StockAnalysis.com</a><br>
-      My YouTube channel on investing: <a href="https://www.youtube.com/@PavloLomakin" target="_blank">youtube.com/@PavloLomakin</a>
+      Website for free stock analysis: <a href="https://stockanalysis.com/" target="_blank">StockAnalysis.com</a><br>
+      My YouTube channel on investing: <a href="https://www.youtube.com/@PavloLomakin" target="_blank">YouTube.com/@PavloLomakin</a>
     `;
 
     document.querySelector("h1").textContent = "📊 Financial Criteria Checklist";
