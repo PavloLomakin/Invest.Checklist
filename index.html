@@ -72,7 +72,7 @@
   #translateBtn {
     position: absolute; /* Position absolutely */
     top: 20px; /* Distance from top */
-    right: 20px; /* Distance from right */
+    right: 150px; /* Adjusted to make space for the new button */
     padding: 8px 16px;
     font-size: 1em;
     background-color: #007bff;
@@ -81,6 +81,21 @@
     border-radius: 6px;
     cursor: pointer;
     z-index: 100; /* Ensure it's above other content */
+  }
+
+  /* ✅ New IV Calculator button styling */
+  #ivCalculatorBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px; /* Top right corner */
+    padding: 8px 16px;
+    font-size: 1em;
+    background-color: #28a745; /* Green color */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    z-index: 100;
   }
 
   /* ✅ Progress text styling */
@@ -114,7 +129,13 @@
     }
     #translateBtn {
       top: 10px;
-      right: 10px;
+      right: 100px; /* Adjusted for smaller screens */
+      padding: 6px 12px;
+      font-size: 0.9em;
+    }
+    #ivCalculatorBtn {
+      top: 10px;
+      right: 10px; /* Adjusted for smaller screens */
       padding: 6px 12px;
       font-size: 0.9em;
     }
@@ -124,7 +145,7 @@
 <body>
   <h1>📊 Financial Criteria Checklist</h1>
   <button id="translateBtn">Русский</button>
-  <p id="progressTracker">0 of 6 criteria selected</p>
+  <button id="ivCalculatorBtn">IV Calculator</button> <p id="progressTracker">0 of 6 criteria selected</p>
 
   <div class="criteria" id="group1" onclick="toggleCriteria(1)">
     <input type="checkbox" id="criteria1" style="display: none;">
@@ -261,7 +282,7 @@
       "ROA: доходность на активы. Формула: Чистая прибыль ÷ Активы.",
       "Долг/Капитал: уровень задолженности. Формула: Обязательства ÷ Собственный капитал.",
       "Текущий коэффициент: ликвидность. Формула: Текущие активы ÷ Текущие обязательства.",
-      "Быстрый коэффициент: ликвидность без запасов. Формула: (Активы – Запасы) ÷ Обязательства.",
+      "Быстрый коэффициент: ликвидность без запасов. Формула: (Активы – Запасы) ÷ Текущие обязательства.",
       "Дивидендная доходность: доход от дивидендов. Формула: Годовой дивиденд ÷ Цена акции.",
       "Прибыль на акцию: прибыль на одну акцию. Формула: Чистая прибыль ÷ Кол-во акций.",
       "Цена к балансовой стоимости: рыночная цена к стоимости. Формула: Цена ÷ Балансовая стоимость на акцию."
@@ -291,6 +312,8 @@
 
     document.querySelector("h1").textContent = "📊 Чек-лист Финансовых Критериев";
     document.getElementById("translateBtn").textContent = "English";
+    // Translate the new button if needed
+    document.getElementById("ivCalculatorBtn").textContent = "IV Калькулятор";
   }
 
   function revertPage() {
@@ -356,6 +379,8 @@
 
     document.querySelector("h1").textContent = "📊 Financial Criteria Checklist";
     document.getElementById("translateBtn").textContent = "Русский";
+    // Revert the new button if needed
+    document.getElementById("ivCalculatorBtn").textContent = "IV Calculator";
   }
 
   // ✅ Run once to initialize tracker
@@ -368,6 +393,11 @@
       translatePage();
     }
     translated = !translated;
+  });
+
+  // Add event listener for the new IV Calculator button
+  document.getElementById("ivCalculatorBtn").addEventListener("click", () => {
+    window.open("https://pavlolomakin.github.io/IV-calculator/", "_blank");
   });
 </script>
 </body>
