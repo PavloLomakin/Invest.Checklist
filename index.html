@@ -6,151 +6,224 @@
   <title>📊 Financial Criteria Checklist</title>
   <style>
   body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 30px;
     background-color: #f8f9fa;
-    position: relative; /* Needed for absolute positioning of the button */
+    position: relative;
+    color: #333;
+    line-height: 1.6;
   }
 
   h1 {
-    color: #333;
-    margin-top: 0; /* Adjust as needed for button positioning */
+    color: #2c3e50;
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eaecef;
   }
 
   .criteria {
     cursor: pointer;
-    padding: 12px;
-    margin-bottom: 3px; /* Reduced spacing */
+    padding: 15px;
+    margin-bottom: 8px;
     border-radius: 8px;
-    background-color: #f0f0f0;
+    background-color: #ffffff;
     transition: all 0.3s ease;
+    border-left: 4px solid #f0f0f0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   }
 
-  /* ✅ Hover effect for entire clickable block */
   .criteria:hover {
-    background-color: #cce5ff;
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
-    transform: scale(1.02);
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.1);
+    transform: translateY(-2px);
+    border-left-color: #007bff;
   }
 
-  /* ✅ Highlighted checkbox block styling */
   .highlighted {
-    background-color: #d4edda;
-    box-shadow: 0 0 8px rgba(40, 167, 69, 0.4);
+    background-color: #e8f4fd;
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.1);
+    border-left-color: #28a745;
   }
 
-  /* ✅ Make label more clickable & visually pleasant */
   label {
     display: inline-block;
     padding: 5px 8px;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
+    color: #2c3e50;
   }
 
-  /* ✅ Tooltip styling */
   .tooltip {
-    border-bottom: 1px dotted #000;
+    border-bottom: 1px dotted #007bff;
     cursor: help;
     position: relative;
+    color: #007bff;
   }
 
   .tooltip:hover::after {
     content: attr(data-tooltip);
     position: absolute;
-    background: #333;
+    background: #2c3e50;
     color: #fff;
-    padding: 6px;
+    padding: 8px 12px;
     border-radius: 5px;
     font-size: 0.85em;
     top: 25px;
     left: 0;
-    white-space: nowrap;
+    min-width: 200px;
+    max-width: 300px;
     z-index: 1000;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
   }
 
-  /* ✅ Translate button styling */
   #translateBtn {
-    position: absolute; /* Position absolutely */
-    top: 20px; /* Distance from top */
-    right: 180px; /* Adjusted to make space for the new button */
-    padding: 8px 16px;
-    font-size: 1em;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    z-index: 100; /* Ensure it's above other content */
-  }
-
-  /* ✅ New IV Calculator button styling */
-  #ivCalculatorBtn {
     position: absolute;
     top: 20px;
-    right: 20px; /* Top right corner */
+    right: 180px;
     padding: 8px 16px;
     font-size: 1em;
-    background-color: #28a745; /* Green color */
+    background-color: #6c757d;
     color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     z-index: 100;
+    transition: all 0.2s ease;
   }
 
-  /* ✅ Progress text styling */
+  #translateBtn:hover {
+    background-color: #5a6268;
+  }
+
+  #ivCalculatorBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 8px 16px;
+    font-size: 1em;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.2s ease;
+  }
+
+  #ivCalculatorBtn:hover {
+    background-color: #218838;
+  }
+
   #progressTracker {
     margin-bottom: 20px;
     font-weight: bold;
+    color: #495057;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 6px;
+    display: inline-block;
   }
 
-  /* ✅ Extra sections block */
   .extra-section {
     margin-top: 30px;
-    padding: 16px;
-    background-color: #e9ecef;
+    padding: 20px;
+    background-color: #ffffff;
     border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   }
 
   .extra-section h2 {
     margin-top: 0;
+    color: #2c3e50;
+    border-bottom: 1px solid #eaecef;
+    padding-bottom: 10px;
   }
 
-  /* ✅ List styling */
   .ratio-list, .broker-list {
     margin: 0;
     padding-left: 20px;
   }
 
-  /* Responsive adjustments */
-  @media (max-width: 600px) {
+  .ratio-list li, .broker-list li {
+    margin-bottom: 10px;
+  }
+
+  a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
     body {
       margin: 15px;
     }
-    #translateBtn {
-      top: 10px;
-      right: 100px; /* Adjusted for smaller screens */
-      padding: 6px 12px;
-      font-size: 0.9em;
+    
+    #translateBtn, #ivCalculatorBtn {
+      position: static;
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
     }
-    #ivCalculatorBtn {
-      top: 10px;
-      right: 10px; /* Adjusted for smaller screens */
-      padding: 6px 12px;
-      font-size: 0.9em;
+    
+    #progressTracker {
+      display: block;
+      margin-top: 10px;
     }
+  }
+
+  /* New economic moat styling */
+  .moat-tag {
+    display: inline-block;
+    background-color: #e9ecef;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    margin-left: 8px;
+    color: #495057;
+  }
+
+  .moat-tag.brand {
+    background-color: #fff8e1;
+    color: #e65100;
+  }
+
+  .moat-tag.network {
+    background-color: #e3f2fd;
+    color: #1565c0;
+  }
+
+  .moat-tag.tech {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+  }
+
+  .moat-tag.switching {
+    background-color: #f3e5f5;
+    color: #7b1fa2;
+  }
+
+  .moat-tag.size {
+    background-color: #e0f7fa;
+    color: #00838f;
   }
   </style>
 </head>
 <body>
   <h1>📊 Financial Criteria Checklist</h1>
   <button id="translateBtn">Русский</button>
-  <button id="ivCalculatorBtn">IV Calculator</button> <p id="progressTracker">0 of 6 criteria selected</p>
+  <button id="ivCalculatorBtn">IV Calculator</button>
+  <div id="progressTracker">0 of 7 criteria selected</div>
 
   <div class="criteria" id="group1" onclick="toggleCriteria(1)">
     <input type="checkbox" id="criteria1" style="display: none;">
     <label for="criteria1">Previous 5-Year Revenue Growth of 20%</label>
-    <p id="text1">Think of a company like a football player or boxer—one that’s already successful is more likely to win in the future than one that’s not.</p>
+    <p id="text1">Think of a company like a football player or boxer—one that's already successful is more likely to win in the future than one that's not.</p>
   </div>
 
   <div class="criteria" id="group2" onclick="toggleCriteria(2)">
@@ -161,7 +234,7 @@
 
   <div class="criteria" id="group3" onclick="toggleCriteria(3)">
     <input type="checkbox" id="criteria3" style="display: none;">
-    <label for="criteria3"><span class="tooltip" data-tooltip="Price/Earnings to Growth (PEG) is a ratio used to determine a stock’s value while factoring in growth.">PEG</span> Ratio Under 1.5</label>
+    <label for="criteria3"><span class="tooltip" data-tooltip="Price/Earnings to Growth (PEG) is a ratio used to determine a stock's value while factoring in growth.">PEG</span> Ratio Under 1.5</label>
     <p id="text3">Suggests reasonable stock pricing relative to growth potential.</p>
   </div>
 
@@ -179,8 +252,21 @@
 
   <div class="criteria" id="group6" onclick="toggleCriteria(6)">
     <input type="checkbox" id="criteria6" style="display: none;">
-    <label for="criteria6"><span class="tooltip" data-tooltip="Is there growing demand for this company’s product or service?">Future Market Demand</span></label>
+    <label for="criteria6"><span class="tooltip" data-tooltip="Is there growing demand for this company's product or service?">Future Market Demand</span></label>
     <p id="text6">Assess what customers, trends, and analysts say about future relevance.</p>
+  </div>
+
+  <div class="criteria" id="group7" onclick="toggleCriteria(7)">
+    <input type="checkbox" id="criteria7" style="display: none;">
+    <label for="criteria7">Economic Moat (Competitive Advantage)</label>
+    <p id="text7">
+      <span class="moat-tag brand">Brand Power</span>
+      <span class="moat-tag network">Network Effects</span>
+      <span class="moat-tag tech">Patents/Tech</span>
+      <span class="moat-tag switching">Switching Costs</span>
+      <span class="moat-tag size">Size Advantage</span>
+      <br>Companies with strong competitive advantages can sustain profits longer.
+    </p>
   </div>
 
   <div class="extra-section">
@@ -190,7 +276,7 @@
       <li id="pegRatio"><strong>PEG Ratio</strong>: P/E to Growth. Adjusts P/E by growth rate. <em>Calculated as: P/E ÷ Earnings Growth %</em></li>
       <li id="roeRatio"><strong>ROE</strong>: Return on Equity. Indicates how efficiently equity is used. <em>Calculated as: Net Income ÷ Shareholder's Equity</em></li>
       <li id="roaRatio"><strong>ROA</strong>: Return on Assets. Measures profitability by total assets. <em>Calculated as: Net Income ÷ Total Assets</em></li>
-      <li id="deRatio"><strong>Debt/Equity</strong>: Shows leverage level. <em>Calculated as: Total Liabilities ÷ Shareholder’s Equity</em></li>
+      <li id="deRatio"><strong>Debt/Equity</strong>: Shows leverage level. <em>Calculated as: Total Liabilities ÷ Shareholder's Equity</em></li>
       <li id="dividendYield"><strong>Dividend Yield</strong>: Income from dividends. <em>Calculated as: Annual Dividend ÷ Share Price</em></li>
       <li id="epsRatio"><strong>EPS</strong>: Earnings Per Share. Represents profitability per share. <em>Calculated as: Net Income ÷ Shares Outstanding</em></li>
       <li id="pbRatio"><strong>Price-to-Book</strong>: Market value vs. book value. <em>Calculated as: Share Price ÷ Book Value per Share</em></li>
@@ -213,10 +299,9 @@
   </div>
 
 <script>
-  // Global variable to track translation state
   let translated = false;
+  let totalCriteria = 7; // Updated to include the new criterion
 
-  // ✅ Handles full-block click toggling
   function toggleCriteria(index) {
     const checkbox = document.getElementById(`criteria${index}`);
     const group = document.getElementById(`group${index}`);
@@ -225,19 +310,16 @@
     updateProgress();
   }
 
-  // ✅ Updates the progress tracker
   function updateProgress() {
-    const total = 6;
     let checked = 0;
-    for (let i = 1; i <= total; i++) {
+    for (let i = 1; i <= totalCriteria; i++) {
       if (document.getElementById(`criteria${i}`).checked) {
         checked++;
       }
     }
-    document.getElementById("progressTracker").textContent = `${checked} of ${total} criteria selected`;
+    document.getElementById("progressTracker").textContent = `${checked} of ${totalCriteria} criteria selected`;
   }
 
-  // ✅ Translation functions
   function translatePage() {
     const translations = [
       {
@@ -263,12 +345,16 @@
       {
         label: "<span class='tooltip' data-tooltip='Есть ли растущий спрос на продукт или услугу компании?'>Будущий спрос на рынке</span>",
         text: "Оцени спрос: что говорят клиенты, отрасль, аналитики?"
+      },
+      {
+        label: "Экономический ров (Конкурентное преимущество)",
+        text: "<span class='moat-tag brand'>Сила бренда</span> <span class='moat-tag network'>Сетевые эффекты</span> <span class='moat-tag tech'>Патенты/Технологии</span> <span class='moat-tag switching'>Затраты на смену</span> <span class='moat-tag size'>Преимущество размера</span><br>Компании с сильными конкурентными преимуществами могут дольше сохранять прибыль."
       }
     ];
 
     translations.forEach((item, i) => {
       document.querySelector(`label[for='criteria${i + 1}']`).innerHTML = item.label;
-      document.getElementById(`text${i + 1}`).textContent = item.text;
+      document.getElementById(`text${i + 1}`).innerHTML = item.text;
     });
 
     document.getElementById("basicKnowledgeTitle").textContent = "🛠️ Базовые знания";
@@ -278,19 +364,20 @@
       "PEG: учитывает рост при оценке. Формула: P/E ÷ Рост прибыли (%).",
       "ROE: доходность на капитал. Формула: Чистая прибыль ÷ Собственный капитал.",
       "ROA: доходность на активы. Формула: Чистая прибыль ÷ Активы.",
-      "Долг/Капитал: уровень задолженности. Формула: Обязательства ÷ Собственный капитал.",
-      "Дивидендная доходность: доход от дивидендов. Формула: Годовой дивиденд ÷ Цена акции.",
+      "Debt/Equity: уровень задолженности. Формула: Обязательства ÷ Собственный капитал.",
+      "Dividend Yield: доход от дивидендов. Формула: Годовой дивиденд ÷ Цена акции.",
       "EPS: Прибыль на акцию: прибыль на одну акцию. Формула: Чистая прибыль ÷ Кол-во акций.",
       "Price-to-Book: Цена к балансовой стоимости: рыночная цена к стоимости. Формула: Цена ÷ Балансовая стоимость на акцию."
     ];
+    
     document.getElementById("peRatio").textContent = translatedRatios[0];
     document.getElementById("pegRatio").textContent = translatedRatios[1];
     document.getElementById("roeRatio").textContent = translatedRatios[2];
     document.getElementById("roaRatio").textContent = translatedRatios[3];
     document.getElementById("deRatio").textContent = translatedRatios[4];
-    document.getElementById("dividendYield").textContent = translatedRatios[7];
-    document.getElementById("epsRatio").textContent = translatedRatios[8];
-    document.getElementById("pbRatio").textContent = translatedRatios[9];
+    document.getElementById("dividendYield").textContent = translatedRatios[5];
+    document.getElementById("epsRatio").textContent = translatedRatios[6];
+    document.getElementById("pbRatio").textContent = translatedRatios[7];
 
     document.getElementById("usefulLinksTitle").textContent = "🔗 Полезные ссылки";
     document.getElementById("stockAnalysisLink").innerHTML = `
@@ -303,35 +390,41 @@
     document.getElementById("questradeLink").innerHTML = `Questrade (Канада) - <a href="https://login.questrade.com/registration" target="_blank">questrade.com/registration</a> используйте код 515724004489095, чтобы получить 50$ бесплатно`;
     document.getElementById("robinhoodLink").innerHTML = `Robinhood (США) - <a href="https://robinhood.com/us/en/" target="_blank">robinhood.com</a>`;
 
-
     document.querySelector("h1").textContent = "📊 Чек-лист Финансовых Критериев";
     document.getElementById("translateBtn").textContent = "English";
-    // Translate the new button if needed
     document.getElementById("ivCalculatorBtn").textContent = "IV Калькулятор";
+    document.getElementById("progressTracker").textContent = document.getElementById("progressTracker").textContent.replace("criteria", "критериев");
   }
 
   function revertPage() {
     const labelsEn = [
       "Previous 5-Year Revenue Growth of 20%",
       "Debt to Equity (DE) Ratio Less Than 1.5",
-      "<span class='tooltip' data-tooltip='Price/Earnings to Growth (PEG) is a ratio used to determine a stock’s value while factoring in growth.'>PEG</span> Ratio Under 1.5",
+      "<span class='tooltip' data-tooltip='Price/Earnings to Growth (PEG) is a ratio used to determine a stock's value while factoring in growth.'>PEG</span> Ratio Under 1.5",
       "Positive Cash Flow",
       "Return on Equity (ROE) Above 10%",
-      "<span class='tooltip' data-tooltip='Is there growing demand for this company’s product or service?'>Future Market Demand</span>"
+      "<span class='tooltip' data-tooltip='Is there growing demand for this company's product or service?'>Future Market Demand</span>",
+      "Economic Moat (Competitive Advantage)"
     ];
 
     const textsEn = [
-      "Think of a company like a football player or boxer—one that’s already successful is more likely to win in the future than one that’s not.",
+      "Think of a company like a football player or boxer—one that's already successful is more likely to win in the future than one that's not.",
       "Statistically, companies with lower debt tend to deliver better future results.",
       "Suggests reasonable stock pricing relative to growth potential.",
       "Consistent cash inflow gives a company a safety buffer during market downturns.",
       "Strong ROE means the company turns $10 of investor capital into $11 or more.",
-      "Assess what customers, trends, and analysts say about future relevance."
+      "Assess what customers, trends, and analysts say about future relevance.",
+      `<span class="moat-tag brand">Brand Power</span>
+      <span class="moat-tag network">Network Effects</span>
+      <span class="moat-tag tech">Patents/Tech</span>
+      <span class="moat-tag switching">Switching Costs</span>
+      <span class="moat-tag size">Size Advantage</span>
+      <br>Companies with strong competitive advantages can sustain profits longer.`
     ];
 
     labelsEn.forEach((label, i) => {
       document.querySelector(`label[for='criteria${i + 1}']`).innerHTML = label;
-      document.getElementById(`text${i + 1}`).textContent = textsEn[i];
+      document.getElementById(`text${i + 1}`).innerHTML = textsEn[i];
     });
 
     document.getElementById("basicKnowledgeTitle").textContent = "🛠️ Basic Knowledge";
@@ -341,21 +434,20 @@
       "PEG Ratio: P/E to Growth. Adjusts P/E by growth rate. Calculated as: P/E ÷ Earnings Growth %",
       "ROE: Return on Equity. Indicates how efficiently equity is used. Calculated as: Net Income ÷ Shareholder's Equity",
       "ROA: Return on Assets. Measures profitability by total assets. Calculated as: Net Income ÷ Total Assets",
-      "Debt/Equity: Shows leverage level. Calculated as: Total Liabilities ÷ Shareholder’s Equity",
+      "Debt/Equity: Shows leverage level. Calculated as: Total Liabilities ÷ Shareholder's Equity",
       "Dividend Yield: Income from dividends. Calculated as: Annual Dividend ÷ Share Price",
       "EPS: Earnings Per Share. Represents profitability per share. Calculated as: Net Income ÷ Shares Outstanding",
       "Price-to-Book: Market value vs. book value. Calculated as: Share Price ÷ Book Value per Share"
     ];
+    
     document.getElementById("peRatio").textContent = originalRatios[0];
     document.getElementById("pegRatio").textContent = originalRatios[1];
     document.getElementById("roeRatio").textContent = originalRatios[2];
     document.getElementById("roaRatio").textContent = originalRatios[3];
     document.getElementById("deRatio").textContent = originalRatios[4];
-    document.getElementById("currentRatio").textContent = originalRatios[5];
-    document.getElementById("quickRatio").textContent = originalRatios[6];
-    document.getElementById("dividendYield").textContent = originalRatios[7];
-    document.getElementById("epsRatio").textContent = originalRatios[8];
-    document.getElementById("pbRatio").textContent = originalRatios[9];
+    document.getElementById("dividendYield").textContent = originalRatios[5];
+    document.getElementById("epsRatio").textContent = originalRatios[6];
+    document.getElementById("pbRatio").textContent = originalRatios[7];
 
     document.getElementById("usefulLinksTitle").textContent = "🔗 Useful Links";
     document.getElementById("stockAnalysisLink").innerHTML = `
@@ -364,18 +456,16 @@
     `;
 
     document.getElementById("recommendedBrokersTitle").textContent = "🤝 Recommended Brokers";
-    document.getElementById("ibkrLink").innerHTML = `Interactive brokers (World wide) - <a href="https://ibkr.com/referral/pavlo272" target="_blank">https://ibkr.com/referral/pavlo272</a>`;
-    document.getElementById("questradeLink").innerHTML = `Questrade (Canada) - <a href="https://login.questrade.com/registration" target="_blank">https://login.questrade.com/registration</a> use code 515724004489095 to get 50$ for free`;
-    document.getElementById("robinhoodLink").innerHTML = `Robinhood (USA) - <a href="https://robinhood.com/us/en/" target="_blank">https://robinhood.com/us/en/</a>`;
-
+    document.getElementById("ibkrLink").innerHTML = `Interactive brokers (World wide) - <a href="https://ibkr.com/referral/pavlo272" target="_blank">ibkr.com</a>`;
+    document.getElementById("questradeLink").innerHTML = `Questrade (Canada) - <a href="https://login.questrade.com/registration" target="_blank">questrade.com/registration</a> use code 515724004489095 to get 50$ for free`;
+    document.getElementById("robinhoodLink").innerHTML = `Robinhood (USA) - <a href="https://robinhood.com/us/en/" target="_blank">robinhood.com</a>`;
 
     document.querySelector("h1").textContent = "📊 Financial Criteria Checklist";
     document.getElementById("translateBtn").textContent = "Русский";
-    // Revert the new button if needed
     document.getElementById("ivCalculatorBtn").textContent = "IV Calculator";
+    document.getElementById("progressTracker").textContent = document.getElementById("progressTracker").textContent.replace("критериев", "criteria");
   }
 
-  // ✅ Run once to initialize tracker
   updateProgress();
 
   document.getElementById("translateBtn").addEventListener("click", () => {
@@ -387,7 +477,6 @@
     translated = !translated;
   });
 
-  // Add event listener for the new IV Calculator button
   document.getElementById("ivCalculatorBtn").addEventListener("click", () => {
     window.open("https://pavlolomakin.github.io/IV-calculator/", "_blank");
   });
