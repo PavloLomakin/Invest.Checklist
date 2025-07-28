@@ -222,7 +222,7 @@
 
   <div class="criteria" id="group1" onclick="toggleCriteria(1)">
     <input type="checkbox" id="criteria1" style="display: none;">
-    <label for="criteria1">Previous 5-Year Revenue Growth of 20%</label>
+    <label for="criteria1">Previous 5-Year Revenue Growth of 50% (CAGR 10%)</label>
     <p id="text1">Think of a company like a football player or boxer—one that's already successful is more likely to win in the future than one that's not.</p>
   </div>
 
@@ -234,8 +234,8 @@
 
   <div class="criteria" id="group3" onclick="toggleCriteria(3)">
     <input type="checkbox" id="criteria3" style="display: none;">
-    <label for="criteria3"><span class="tooltip" data-tooltip="Price/Earnings to Growth (PEG) is a ratio used to determine a stock's value while factoring in growth.">PEG</span> Ratio Under 1.5</label>
-    <p id="text3">Suggests reasonable stock pricing relative to growth potential.</p>
+    <label for="criteria3"><span class="tooltip" data-tooltip="Price/Earnings to Growth (PEG) is a ratio used to determine a stock's value while factoring in growth.">PEG</span> Ratio Under 1.5* </label>
+    <p id="text3">Suggests reasonable stock pricing relative to growth potential.*For companies with economic moat - under 3.5</p>
   </div>
 
   <div class="criteria" id="group4" onclick="toggleCriteria(4)">
@@ -323,7 +323,7 @@
   function translatePage() {
     const translations = [
       {
-        label: "Рост выручки за последние 5 лет на 20%",
+        label: "Рост выручки за последние 5 лет на 50% (сред. 10%/год)",
         text: "Подумайте о компании как о футболисте — тот, кто забивал 20 голов за сезон, скорее всего, будет забивать и в будущем."
       },
       {
@@ -331,8 +331,8 @@
         text: "Статистически компании с меньшим уровнем долга показывают лучшие результаты в будущем."
       },
       {
-        label: "<span class='tooltip' data-tooltip='Коэффициент PEG помогает определить стоимость акций с учётом потенциального роста.'>Коэффициент PEG менее 1.5</span>",
-        text: "Указывает на разумную цену акций по отношению к потенциалу роста."
+        label: "<span class='tooltip' data-tooltip='Коэффициент PEG помогает определить стоимость акций с учётом потенциального роста.'>Коэффициент PEG менее 1.5* </span>",
+        text: "Указывает на разумную цену акций по отношению к потенциалу роста. *-Для компаний с экономическим рвом - до 3.5"
       },
       {
         label: "Положительный денежный поток",
@@ -398,7 +398,7 @@
 
   function revertPage() {
     const labelsEn = [
-      "Previous 5-Year Revenue Growth of 20%",
+      "Previous 5-Year Revenue Growth of 50%",
       "Debt to Equity (DE) Ratio Less Than 1.5",
       "<span class='tooltip' data-tooltip='Price/Earnings to Growth (PEG) is a ratio used to determine a stock's value while factoring in growth.'>PEG</span> Ratio Under 1.5",
       "Positive Cash Flow",
