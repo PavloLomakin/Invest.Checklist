@@ -17,18 +17,18 @@
   h1 {
     color: #2c3e50;
     margin-top: 0;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
     border-bottom: 2px solid #eaecef;
   }
 
   .criteria {
     cursor: pointer;
-    padding: 5px;
-    margin-bottom: 5px;
-    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 17px;
     background-color: #ffffff;
     transition: all 0.3s ease;
-    border-left: 4px solid #f0f0f0;
+    border-left: 3px solid #f0f0f0;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   }
 
@@ -47,8 +47,8 @@
 
   label {
     display: inline-block;
-    padding: 5px 8px;
-    font-weight: 600;
+    padding: 0px 8px;
+    font-weight: 630;
     cursor: pointer;
     color: #2c3e50;
   }
@@ -221,40 +221,41 @@
   <div id="progressTracker">0 of 7 criteria selected</div>
 
   <div class="criteria" id="group1" onclick="toggleCriteria(1)">
-    <input type="checkbox" id="criteria1" style="display: none;">
-    <label for="criteria1">Previous 5-Year Revenue Growth of 50% (CAGR 10%)</label>
-    <p id="text1">Think of a company like a football player or boxer—one that's already successful is more likely to win in the future than one that's not.</p>
-  </div>
+  <input type="checkbox" id="criteria1" style="display: none;">
+  <label for="criteria1" style="margin-bottom: 3px;">Previous 5-Year Revenue Growth of 50% (CAGR 10%)</label>
+  <p id="text1" style="margin-top: 0;">Think of a company like a football player or boxer—one that's already successful is more likely to win in the future than one that's not.</p>
+</div>
 
-  <div class="criteria" id="group2" onclick="toggleCriteria(2)">
-    <input type="checkbox" id="criteria2" style="display: none;">
-    <label for="criteria2">Debt to Equity (DE) Ratio Less Than 1.5</label>
-    <p id="text2">Statistically, companies with lower debt tend to deliver better future results.</p>
-  </div>
+<div class="criteria" id="group2" onclick="toggleCriteria(2)">
+  <input type="checkbox" id="criteria2" style="display: none;">
+  <label for="criteria2" style="margin-bottom: 3px;">Debt to Equity (DE) Ratio Less Than 1.5</label>
+  <p id="text2" style="margin-top: 0;">Statistically, companies with lower debt tend to deliver better future results.</p>
+</div>
 
-  <div class="criteria" id="group3" onclick="toggleCriteria(3)">
-    <input type="checkbox" id="criteria3" style="display: none;">
-    <label for="criteria3"><span class="tooltip" data-tooltip="Price/Earnings to Growth (PEG) is a ratio used to determine a stock's value while factoring in growth.">PEG</span> Ratio Under 1.5* </label>
-    <p id="text3">Suggests reasonable stock pricing relative to growth potential.*For companies with economic moat - under 3.5</p>
-  </div>
+<div class="criteria" id="group3" onclick="toggleCriteria(3)">
+  <input type="checkbox" id="criteria3" style="display: none;">
+  <label for="criteria3" style="margin-bottom: 3px;"><span class="tooltip" data-tooltip="Price/Earnings to Growth (PEG) is a ratio used to determine a stock's value while factoring in growth.">PEG</span> Ratio Under 1.5*</label>
+  <p id="text3" style="margin-top: 0;">Suggests reasonable stock pricing relative to growth potential.*For companies with economic moat - under 3.5</p>
+</div>
 
-  <div class="criteria" id="group4" onclick="toggleCriteria(4)">
-    <input type="checkbox" id="criteria4" style="display: none;">
-    <label for="criteria4">Positive Cash Flow</label>
-    <p id="text4">Consistent cash inflow gives a company a safety buffer during market downturns.</p>
-  </div>
+<div class="criteria" id="group4" onclick="toggleCriteria(4)">
+  <input type="checkbox" id="criteria4" style="display: none;">
+  <label for="criteria4" style="margin-bottom: 3px;">Positive Cash Flow</label>
+  <p id="text4" style="margin-top: 0;">Consistent cash inflow gives a company a safety buffer during market downturns.</p>
+</div>
 
-  <div class="criteria" id="group5" onclick="toggleCriteria(5)">
-    <input type="checkbox" id="criteria5" style="display: none;">
-    <label for="criteria5">Return on Equity (ROE) Above 10%</label>
-    <p id="text5">Strong ROE means the company turns $10 of investor capital into $11 or more.</p>
-  </div>
+<div class="criteria" id="group5" onclick="toggleCriteria(5)">
+  <input type="checkbox" id="criteria5" style="display: none;">
+  <label for="criteria5" style="margin-bottom: 3px;">Return on Equity (ROE) Above 10%</label>
+  <p id="text5" style="margin-top: 0;">Strong ROE means the company turns $10 of investor capital into $11 or more.</p>
+</div>
 
-  <div class="criteria" id="group6" onclick="toggleCriteria(6)">
-    <input type="checkbox" id="criteria6" style="display: none;">
-    <label for="criteria6"><span class="tooltip" data-tooltip="Is there growing demand for this company's product or service?">Future Market Demand</span></label>
-    <p id="text6">Assess what customers, trends, and analysts say about future relevance.</p>
-  </div>
+<div class="criteria" id="group6" onclick="toggleCriteria(6)">
+  <input type="checkbox" id="criteria6" style="display: none;">
+  <label for="criteria6" style="margin-bottom: 3px;"><span class="tooltip" data-tooltip="Is there growing demand for this company's product or service?">Future Market Demand</span></label>
+  <p id="text6" style="margin-top: 0;">Assess what customers, trends, and analysts say about future relevance.</p>
+</div>
+
 
   <div class="criteria" id="group7" onclick="toggleCriteria(7)">
     <input type="checkbox" id="criteria7" style="display: none;">
