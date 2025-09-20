@@ -30,6 +30,7 @@
     transition: all 0.3s ease;
     border-left: 3px solid #f0f0f0;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    position: relative;
   }
 
   .criteria:hover {
@@ -213,6 +214,25 @@
     background-color: #e0f7fa;
     color: #00838f;
   }
+
+  /* AI Help Button Styles */
+  .ai-help-btn {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    padding: 4px 10px;
+    font-size: 0.8em;
+    background-color: #6f42c1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .ai-help-btn:hover {
+    background-color: #5a359c;
+  }
   </style>
 </head>
 <body>
@@ -261,7 +281,8 @@
   <div class="criteria" id="group7" onclick="toggleCriteria(7)">
     <input type="checkbox" id="criteria7" style="display: none;">
     <label for="criteria7">Economic Moat (Competitive Advantage)</label>
-    <p id="text7" style="margin-top: 0; margin-bottom: 0;>
+    <button class="ai-help-btn" onclick="openAiHelp(event)">Define with AI help</button>
+    <p id="text7" style="margin-top: 0; margin-bottom: 0;">
       <span class="moat-tag brand">Brand Power</span>
       <span class="moat-tag network">Network Effects</span>
       <span class="moat-tag tech">Patents/Tech</span>
@@ -322,6 +343,11 @@
     document.getElementById("progressTracker").textContent = `${checked} of ${totalCriteria} criteria selected`;
   }
 
+  function openAiHelp(event) {
+    event.stopPropagation(); // Prevent triggering the parent div's click event
+    window.open("https://pavlolomakin.github.io/Ai.IV.analysis/", "_blank");
+  }
+
   function translatePage() {
     const translations = [
       {
@@ -358,6 +384,9 @@
       document.querySelector(`label[for='criteria${i + 1}']`).innerHTML = item.label;
       document.getElementById(`text${i + 1}`).innerHTML = item.text;
     });
+
+    // Update the AI help button text
+    document.querySelector('.ai-help-btn').textContent = "Определить с помощью ИИ";
 
     document.getElementById("basicKnowledgeTitle").textContent = "🛠️ Базовые знания";
 
@@ -429,6 +458,9 @@
       document.querySelector(`label[for='criteria${i + 1}']`).innerHTML = label;
       document.getElementById(`text${i + 1}`).innerHTML = textsEn[i];
     });
+
+    // Revert the AI help button text
+    document.querySelector('.ai-help-btn').textContent = "Define with AI help";
 
     document.getElementById("basicKnowledgeTitle").textContent = "🛠️ Basic Knowledge";
 
