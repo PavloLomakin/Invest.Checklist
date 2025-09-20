@@ -233,6 +233,83 @@
   .ai-help-btn:hover {
     background-color: #5a359c;
   }
+
+  /* Check Button Styles */
+  .check-btn {
+    margin-left: 10px;
+    padding: 4px 10px;
+    font-size: 0.8em;
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .check-btn:hover {
+    background-color: #138496;
+  }
+
+  /* Modal Styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    width: 300px;
+    text-align: center;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .close:hover {
+    color: black;
+  }
+
+  #tickerInput {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  #tickerInput::placeholder {
+    color: #aaa;
+  }
+
+  #submitTicker {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  #submitTicker:hover {
+    background-color: #218838;
+  }
   </style>
 </head>
 <body>
@@ -242,41 +319,45 @@
   <div id="progressTracker">0 of 7 criteria selected</div>
 
   <div class="criteria" id="group1" onclick="toggleCriteria(1)">
-  <input type="checkbox" id="criteria1" style="display: none;">
-  <label for="criteria1" style="margin-bottom: 3px;">Previous 5-Year Revenue Growth of 50% (CAGR 10%)</label>
-  <p id="text1" style="margin-top: 0; margin-bottom: 0;">Think of a company like a football player or boxer—one that's already successful is more likely to win in the future than one that's not.</p>
-</div>
+    <input type="checkbox" id="criteria1" style="display: none;">
+    <label for="criteria1" style="margin-bottom: 3px;">Previous 5-Year Revenue Growth of 50% (CAGR 10%)</label>
+    <button class="check-btn" onclick="openTickerModal(event, 'revenue')">Check</button>
+    <p id="text1" style="margin-top: 0; margin-bottom: 0;">Think of a company like a football player or boxer—one that's already successful is more likely to win in the future than one that's not.</p>
+  </div>
 
-<div class="criteria" id="group2" onclick="toggleCriteria(2)">
-  <input type="checkbox" id="criteria2" style="display: none;">
-  <label for="criteria2" style="margin-bottom: 3px;">Debt to Equity (DE) Ratio Less Than 1.5</label>
-  <p id="text2" style="margin-top: 0; margin-bottom: 0;">Statistically, companies with lower debt tend to deliver better future results.</p>
-</div>
+  <div class="criteria" id="group2" onclick="toggleCriteria(2)">
+    <input type="checkbox" id="criteria2" style="display: none;">
+    <label for="criteria2" style="margin-bottom: 3px;">Debt to Equity (DE) Ratio Less Than 1.5</label>
+    <button class="check-btn" onclick="openTickerModal(event, 'debtToEquity')">Check</button>
+    <p id="text2" style="margin-top: 0; margin-bottom: 0;">Statistically, companies with lower debt tend to deliver better future results.</p>
+  </div>
 
-<div class="criteria" id="group3" onclick="toggleCriteria(3)">
-  <input type="checkbox" id="criteria3" style="display: none;">
-  <label for="criteria3" style="margin-bottom: 3px;"><span class="tooltip" data-tooltip="Price/Earnings to Growth (PEG) is a ratio used to determine a stock's value while factoring in growth.">PEG</span> Ratio Under 1.5*</label>
-  <p id="text3" style="margin-top: 0; margin-bottom: 0;">Suggests reasonable stock pricing relative to growth potential.*For companies with economic moat - under 3.5</p>
-</div>
+  <div class="criteria" id="group3" onclick="toggleCriteria(3)">
+    <input type="checkbox" id="criteria3" style="display: none;">
+    <label for="criteria3" style="margin-bottom: 3px;"><span class="tooltip" data-tooltip="Price/Earnings to Growth (PEG) is a ratio used to determine a stock's value while factoring in growth.">PEG</span> Ratio Under 1.5*</label>
+    <button class="check-btn" onclick="openTickerModal(event, 'peg')">Check</button>
+    <p id="text3" style="margin-top: 0; margin-bottom: 0;">Suggests reasonable stock pricing relative to growth potential.*For companies with economic moat - under 3.5</p>
+  </div>
 
-<div class="criteria" id="group4" onclick="toggleCriteria(4)">
-  <input type="checkbox" id="criteria4" style="display: none;">
-  <label for="criteria4" style="margin-bottom: 3px;">Positive Cash Flow</label>
-  <p id="text4" style="margin-top: 0; margin-bottom: 0;">Consistent cash inflow gives a company a safety buffer during market downturns.</p>
-</div>
+  <div class="criteria" id="group4" onclick="toggleCriteria(4)">
+    <input type="checkbox" id="criteria4" style="display: none;">
+    <label for="criteria4" style="margin-bottom: 3px;">Positive Cash Flow</label>
+    <button class="check-btn" onclick="openTickerModal(event, 'cashflow')">Check</button>
+    <p id="text4" style="margin-top: 0; margin-bottom: 0;">Consistent cash inflow gives a company a safety buffer during market downturns.</p>
+  </div>
 
-<div class="criteria" id="group5" onclick="toggleCriteria(5)">
-  <input type="checkbox" id="criteria5" style="display: none;">
-  <label for="criteria5" style="margin-bottom: 3px;">Return on Equity (ROE) Above 10%</label>
-  <p id="text5" style="margin-top: 0; margin-bottom: 0;">Strong ROE means the company turns $10 of investor capital into $11 or more.</p>
-</div>
+  <div class="criteria" id="group5" onclick="toggleCriteria(5)">
+    <input type="checkbox" id="criteria5" style="display: none;">
+    <label for="criteria5" style="margin-bottom: 3px;">Return on Equity (ROE) Above 10%</label>
+    <button class="check-btn" onclick="openTickerModal(event, 'roe')">Check</button>
+    <p id="text5" style="margin-top: 0; margin-bottom: 0;">Strong ROE means the company turns $10 of investor capital into $11 or more.</p>
+  </div>
 
-<div class="criteria" id="group6" onclick="toggleCriteria(6)">
-  <input type="checkbox" id="criteria6" style="display: none;">
-  <label for="criteria6" style="margin-bottom: 3px;"><span class="tooltip" data-tooltip="Is there growing demand for this company's product or service?">Future Market Demand</span></label>
-  <p id="text6" style="margin-top: 0; margin-bottom: 0;">Assess what customers, trends, and analysts say about future relevance.</p>
-</div>
-
+  <div class="criteria" id="group6" onclick="toggleCriteria(6)">
+    <input type="checkbox" id="criteria6" style="display: none;">
+    <label for="criteria6" style="margin-bottom: 3px;"><span class="tooltip" data-tooltip="Is there growing demand for this company's product or service?">Future Market Demand</span></label>
+    <p id="text6" style="margin-top: 0; margin-bottom: 0;">Assess what customers, trends, and analysts say about future relevance.</p>
+  </div>
 
   <div class="criteria" id="group7" onclick="toggleCriteria(7)">
     <input type="checkbox" id="criteria7" style="display: none;">
@@ -290,6 +371,16 @@
       <span class="moat-tag size">Size Advantage</span>
       <br>Companies with strong competitive advantages can sustain profits longer.
     </p>
+  </div>
+
+  <!-- Modal for Ticker Input -->
+  <div id="tickerModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p id="modalMessage">Enter ticker symbol</p>
+      <input type="text" id="tickerInput" placeholder="example MSFT">
+      <button id="submitTicker">OK</button>
+    </div>
   </div>
 
   <div class="extra-section">
@@ -323,7 +414,8 @@
 
 <script>
   let translated = false;
-  let totalCriteria = 7; // Updated to include the new criterion
+  let totalCriteria = 7;
+  let currentCheckType = '';
 
   function toggleCriteria(index) {
     const checkbox = document.getElementById(`criteria${index}`);
@@ -344,8 +436,25 @@
   }
 
   function openAiHelp(event) {
-    event.stopPropagation(); // Prevent triggering the parent div's click event
+    event.stopPropagation();
     window.open("https://pavlolomakin.github.io/Ai.IV.analysis/", "_blank");
+  }
+
+  function openTickerModal(event, type) {
+    event.stopPropagation();
+    currentCheckType = type;
+    
+    // Set the modal message based on the type
+    let message = "Enter ticker symbol";
+    if (translated) {
+      message = "Введите тикер компании";
+    }
+    
+    document.getElementById("modalMessage").textContent = message;
+    document.getElementById("tickerInput").placeholder = translated ? "например MSFT" : "example MSFT";
+    
+    // Show the modal
+    document.getElementById("tickerModal").style.display = "block";
   }
 
   function translatePage() {
@@ -387,6 +496,11 @@
 
     // Update the AI help button text
     document.querySelector('.ai-help-btn').textContent = "Определить с помощью ИИ";
+    
+    // Update the check buttons text
+    document.querySelectorAll('.check-btn').forEach(btn => {
+      btn.textContent = "Проверить";
+    });
 
     document.getElementById("basicKnowledgeTitle").textContent = "🛠️ Базовые знания";
 
@@ -461,6 +575,11 @@
 
     // Revert the AI help button text
     document.querySelector('.ai-help-btn').textContent = "Define with AI help";
+    
+    // Revert the check buttons text
+    document.querySelectorAll('.check-btn').forEach(btn => {
+      btn.textContent = "Check";
+    });
 
     document.getElementById("basicKnowledgeTitle").textContent = "🛠️ Basic Knowledge";
 
@@ -500,6 +619,63 @@
     document.getElementById("ivCalculatorBtn").textContent = "IV Calculator";
     document.getElementById("progressTracker").textContent = document.getElementById("progressTracker").textContent.replace("критериев", "criteria");
   }
+
+  // Modal functionality
+  const modal = document.getElementById("tickerModal");
+  const span = document.getElementsByClassName("close")[0];
+  const tickerInput = document.getElementById("tickerInput");
+  const submitTicker = document.getElementById("submitTicker");
+
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+  submitTicker.onclick = function() {
+    const ticker = tickerInput.value.trim().toUpperCase();
+    if (ticker) {
+      let url = "";
+      
+      switch(currentCheckType) {
+        case 'revenue':
+          url = `https://stockanalysis.com/stocks/${ticker}/financials/`;
+          break;
+        case 'debtToEquity':
+          url = `https://stockanalysis.com/stocks/${ticker}/financials/ratios/?p=quarterly`;
+          break;
+        case 'peg':
+          url = `https://stockanalysis.com/stocks/${ticker}/financials/ratios/?p=quarterly`;
+          break;
+        case 'cashflow':
+          url = `https://stockanalysis.com/stocks/${ticker}/financials/cash-flow-statement/?p=quarterly`;
+          break;
+        case 'roe':
+          url = `https://stockanalysis.com/stocks/${ticker}/financials/ratios/?p=quarterly`;
+          break;
+      }
+      
+      if (url) {
+        window.open(url, "_blank");
+      }
+      
+      // Close the modal and clear the input
+      modal.style.display = "none";
+      tickerInput.value = "";
+    }
+  }
+
+  // Allow pressing Enter to submit
+  tickerInput.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      submitTicker.click();
+    }
+  });
 
   updateProgress();
 
