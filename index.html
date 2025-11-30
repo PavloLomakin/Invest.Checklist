@@ -5,412 +5,496 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>📊 Financial Criteria Checklist</title>
   <style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 30px;
-    background-color: #f8f9fa;
-    position: relative;
-    color: #333;
-    line-height: 1.6;
-  }
-
-  h1 {
-    color: #2c3e50;
-    margin-top: 0;
-    padding-bottom: 5px;
-    border-bottom: 2px solid #eaecef;
-  }
-
-  .criteria {
-    cursor: pointer;
-    padding: 8px;
-    margin-bottom: 12px;
-    border-radius: 17px;
-    background-color: #ffffff;
-    transition: all 0.3s ease;
-    border-left: 3px solid #f0f0f0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    position: relative;
-  }
-
-  .criteria:hover {
-    background-color: #f8f9fa;
-    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.1);
-    transform: translateY(-2px);
-    border-left-color: #007bff;
-  }
-
-  .highlighted {
-    background-color: #e8f4fd;
-    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.1);
-    border-left-color: #28a745;
-  }
-
-  label {
-    display: inline-block;
-    padding: 0px 8px;
-    font-weight: 630;
-    cursor: pointer;
-    color: #2c3e50;
-  }
-
-  .tooltip {
-    border-bottom: 1px dotted #007bff;
-    cursor: help;
-    position: relative;
-    color: #007bff;
-  }
-
-  .tooltip:hover::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    background: #2c3e50;
-    color: #fff;
-    padding: 8px 12px;
-    border-radius: 5px;
-    font-size: 0.85em;
-    top: 25px;
-    left: 0;
-    min-width: 200px;
-    max-width: 300px;
-    z-index: 1000;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-  }
-
-  #translateBtn {
-    position: absolute;
-    top: 20px;
-    right: 180px;
-    padding: 8px 16px;
-    font-size: 1em;
-    background-color: #6c757d;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    z-index: 100;
-    transition: all 0.2s ease;
-  }
-
-  #translateBtn:hover {
-    background-color: #5a6268;
-  }
-
-  #ivCalculatorBtn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    padding: 8px 16px;
-    font-size: 1em;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    z-index: 100;
-    transition: all 0.2s ease;
-  }
-
-  #ivCalculatorBtn:hover {
-    background-color: #218838;
-  }
-
-  #progressTracker {
-    margin-bottom: 10px;
-    margin-top: -12px; /* reduce or remove if unnecessary */
-    font-weight: bold;
-    color: #495057;
-    padding: 10px;
-    background-color: #e9ecef;
-    border-radius: 6px;
-    display: inline-block;
-  }
-
-  .extra-section {
-    margin-top: 30px;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  }
-
-  .extra-section h2 {
-    margin-top: 0;
-    color: #2c3e50;
-    border-bottom: 1px solid #eaecef;
-    padding-bottom: 10px;
-  }
-
-  .ratio-list, .broker-list {
-    margin: 0;
-    padding-left: 20px;
-  }
-
-  .ratio-list li, .broker-list li {
-    margin-bottom: 10px;
-  }
-
-  a {
-    color: #007bff;
-    text-decoration: none;
-    transition: color 0.2s ease;
-  }
-
-  a:hover {
-    color: #0056b3;
-    text-decoration: underline;
-  }
-
-  @media (max-width: 768px) {
-    body {
-      margin: 15px;
+    :root {
+      --primary-color: #2E7D32;
+      --primary-light: #4CAF50;
+      --secondary-color: #1565C0;
+      --secondary-light: #2196F3;
+      --background-light: #f8fafc;
+      --background-dark: #e8edf2;
+      --text-color: #2d3748;
+      --text-light: #4a5568;
+      --border-color: #e2e8f0;
+      --shadow-light: rgba(0, 0, 0, 0.05);
+      --shadow-medium: rgba(0, 0, 0, 0.1);
+      --error-color: #D32F2F;
+      --success-color: #388E3C;
+      --warning-color: #F57C00;
+      --card-radius: 12px;
+      --transition: all 0.2s ease-in-out;
+      --dark-grey: #616161;
+      --dark-grey-hover: #424242;
     }
-    
-    #translateBtn, #ivCalculatorBtn {
-      position: static;
-      display: block;
-      width: 100%;
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--background-light);
+      color: var(--text-color);
+    }
+
+    .header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 25px 30px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .header-content {
+      text-align: center;
+      flex-grow: 1;
+      padding-right: 20px;
+    }
+
+    .header-buttons {
+      display: flex;
+      gap: 10px;
+      position: absolute;
+      top: 15px;
+      right: 15px;
+    }
+
+    .header-button {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      background-color: var(--dark-grey);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .header-button:hover {
+      background-color: var(--dark-grey-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    }
+
+    main.wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 18px;
+      border-radius: var(--card-radius);
+      box-shadow: 0 2px 4px var(--shadow-medium);
+    }
+
+    h1 {
+      margin-top: 0;
+      color: white;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: var(--text-color);
+    }
+
+    .criteria {
+      cursor: pointer;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: var(--card-radius);
+      background-color: #ffffff;
+      transition: var(--transition);
+      border-left: 4px solid var(--border-color);
+      box-shadow: 0 2px 4px var(--shadow-light);
+      position: relative;
+    }
+
+    .criteria:hover {
+      background-color: var(--background-dark);
+      box-shadow: 0 4px 8px var(--shadow-medium);
+      transform: translateY(-2px);
+      border-left-color: var(--secondary-light);
+    }
+
+    .highlighted {
+      background-color: #e8f4fd;
+      box-shadow: 0 4px 8px rgba(40, 167, 69, 0.1);
+      border-left-color: var(--success-color);
+    }
+
+    label {
+      display: inline-block;
+      padding: 0px 8px;
+      font-weight: 630;
+      cursor: pointer;
+      color: var(--text-color);
+    }
+
+    .tooltip {
+      border-bottom: 1px dotted var(--secondary-light);
+      cursor: help;
+      position: relative;
+      color: var(--secondary-light);
+    }
+
+    .tooltip:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      background: var(--text-color);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 5px;
+      font-size: 0.85em;
+      top: 25px;
+      left: 0;
+      min-width: 200px;
+      max-width: 300px;
+      z-index: 1000;
+      box-shadow: 0 3px 6px var(--shadow-medium);
+    }
+
+    #progressTracker {
+      margin-bottom: 20px;
+      margin-top: 10px;
+      font-weight: bold;
+      color: var(--text-light);
+      padding: 10px;
+      background-color: var(--background-dark);
+      border-radius: var(--card-radius);
+      display: inline-block;
+    }
+
+    .extra-section {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: var(--card-radius);
+      box-shadow: 0 2px 4px var(--shadow-light);
+    }
+
+    .extra-section h2 {
+      margin-top: 0;
+      color: var(--text-color);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 10px;
+    }
+
+    .ratio-list, .broker-list {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .ratio-list li, .broker-list li {
       margin-bottom: 10px;
     }
-    
-    #progressTracker {
-      display: block;
-      margin-top: 10px;
+
+    a {
+      color: var(--secondary-light);
+      text-decoration: none;
+      transition: color 0.2s ease;
     }
-  }
 
-  /* New economic moat styling */
-  .moat-tag {
-    display: inline-block;
-    background-color: #e9ecef;
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 0.8em;
-    margin-left: 8px;
-    color: #495057;
-  }
+    a:hover {
+      color: var(--secondary-color);
+      text-decoration: underline;
+    }
 
-  .moat-tag.brand {
-    background-color: #fff8e1;
-    color: #e65100;
-  }
+    @media (max-width: 768px) {
+      .header {
+        padding: 15px;
+      }
+      
+      .header-buttons {
+        position: static;
+        display: flex;
+        width: 100%;
+        margin-top: 15px;
+        justify-content: center;
+      }
+      
+      .header-button {
+        width: 48%;
+      }
+      
+      main.wrap {
+        padding: 15px;
+      }
+      
+      #progressTracker {
+        display: block;
+        margin-top: 10px;
+        width: 100%;
+        text-align: center;
+      }
+    }
 
-  .moat-tag.network {
-    background-color: #e3f2fd;
-    color: #1565c0;
-  }
+    /* New economic moat styling */
+    .moat-tag {
+      display: inline-block;
+      background-color: var(--background-dark);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.8em;
+      margin-left: 8px;
+      color: var(--text-light);
+    }
 
-  .moat-tag.tech {
-    background-color: #e8f5e9;
-    color: #2e7d32;
-  }
+    .moat-tag.brand {
+      background-color: #fff8e1;
+      color: #e65100;
+    }
 
-  .moat-tag.switching {
-    background-color: #f3e5f5;
-    color: #7b1fa2;
-  }
+    .moat-tag.network {
+      background-color: #e3f2fd;
+      color: var(--secondary-color);
+    }
 
-  .moat-tag.size {
-    background-color: #e0f7fa;
-    color: #00838f;
-  }
+    .moat-tag.tech {
+      background-color: #e8f5e9;
+      color: var(--success-color);
+    }
 
-  /* AI Help Button Styles */
-  .ai-help-btn {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    padding: 4px 10px;
-    font-size: 0.8em;
-    background-color: #6f42c1;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
+    .moat-tag.switching {
+      background-color: #f3e5f5;
+      color: #7b1fa2;
+    }
 
-  .ai-help-btn:hover {
-    background-color: #5a359c;
-  }
+    .moat-tag.size {
+      background-color: #e0f7fa;
+      color: #00838f;
+    }
 
-  /* Check Button Styles */
-  .check-btn {
-    margin-left: 10px;
-    padding: 4px 10px;
-    font-size: 0.8em;
-    background-color: #17a2b8;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
+    /* AI Help Button Styles */
+    .ai-help-btn {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      padding: 6px 12px;
+      font-size: 0.8em;
+      background-color: var(--dark-grey);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
 
-  .check-btn:hover {
-    background-color: #138496;
-  }
+    .ai-help-btn:hover {
+      background-color: var(--dark-grey-hover);
+    }
 
-  /* Modal Styles */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-  }
+    /* Check Button Styles */
+    .check-btn {
+      margin-left: 10px;
+      padding: 6px 12px;
+      font-size: 0.8em;
+      background-color: var(--secondary-light);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
 
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    width: 300px;
-    text-align: center;
-  }
+    .check-btn:hover {
+      background-color: var(--secondary-color);
+    }
 
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-  }
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
 
-  .close:hover {
-    color: black;
-  }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: var(--card-radius);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      width: 300px;
+      text-align: center;
+    }
 
-  #tickerInput {
-    width: 100%;
-    padding: 8px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-  #tickerInput::placeholder {
-    color: #aaa;
-  }
+    .close:hover {
+      color: black;
+    }
 
-  #submitTicker {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+    #tickerInput {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
 
-  #submitTicker:hover {
-    background-color: #218838;
-  }
+    #tickerInput::placeholder {
+      color: #aaa;
+    }
+
+    #submitTicker {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    #submitTicker:hover {
+      background-color: var(--primary-light);
+    }
+
+    footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 25px 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      flex-wrap: wrap;
+      position: relative;
+    }
   </style>
 </head>
 <body>
-  <h1>📊 Financial Criteria Checklist</h1>
-  <button id="translateBtn">Русский</button>
-  <button id="ivCalculatorBtn">IV Calculator</button>
-  <div id="progressTracker">0 of 7 criteria selected</div>
-
-  <div class="criteria" id="group1" onclick="toggleCriteria(1)">
-    <input type="checkbox" id="criteria1" style="display: none;">
-    <label for="criteria1" style="margin-bottom: 3px;">Previous 5-Year Revenue Growth of 50% (CAGR 10%)</label>
-    <button class="check-btn" onclick="openTickerModal(event, 'revenue')">Check</button>
-    <p id="text1" style="margin-top: 0; margin-bottom: 0;">Think of a company like a football player or boxer—one that's already successful is more likely to win in the future than one that's not.</p>
-  </div>
-
-  <div class="criteria" id="group2" onclick="toggleCriteria(2)">
-    <input type="checkbox" id="criteria2" style="display: none;">
-    <label for="criteria2" style="margin-bottom: 3px;">Debt to Equity (DE) Ratio Less Than 1.5</label>
-    <button class="check-btn" onclick="openTickerModal(event, 'debtToEquity')">Check</button>
-    <p id="text2" style="margin-top: 0; margin-bottom: 0;">Statistically, companies with lower debt tend to deliver better future results.</p>
-  </div>
-
-  <div class="criteria" id="group3" onclick="toggleCriteria(3)">
-    <input type="checkbox" id="criteria3" style="display: none;">
-    <label for="criteria3" style="margin-bottom: 3px;"><span class="tooltip" data-tooltip="Price/Earnings to Growth (PEG) is a ratio used to determine a stock's value while factoring in growth.">PEG</span> Ratio Under 1.5*</label>
-    <button class="check-btn" onclick="openTickerModal(event, 'peg')">Check</button>
-    <p id="text3" style="margin-top: 0; margin-bottom: 0;">Suggests reasonable stock pricing relative to growth potential.*For companies with economic moat - under 3.5</p>
-  </div>
-
-  <div class="criteria" id="group4" onclick="toggleCriteria(4)">
-    <input type="checkbox" id="criteria4" style="display: none;">
-    <label for="criteria4" style="margin-bottom: 3px;">Positive Cash Flow</label>
-    <button class="check-btn" onclick="openTickerModal(event, 'cashflow')">Check</button>
-    <p id="text4" style="margin-top: 0; margin-bottom: 0;">Consistent cash inflow gives a company a safety buffer during market downturns.</p>
-  </div>
-
-  <div class="criteria" id="group5" onclick="toggleCriteria(5)">
-    <input type="checkbox" id="criteria5" style="display: none;">
-    <label for="criteria5" style="margin-bottom: 3px;">Return on Equity (ROE) Above 10%</label>
-    <button class="check-btn" onclick="openTickerModal(event, 'roe')">Check</button>
-    <p id="text5" style="margin-top: 0; margin-bottom: 0;">Strong ROE means the company turns $10 of investor capital into $11 or more.</p>
-  </div>
-
-  <div class="criteria" id="group6" onclick="toggleCriteria(6)">
-    <input type="checkbox" id="criteria6" style="display: none;">
-    <label for="criteria6" style="margin-bottom: 3px;"><span class="tooltip" data-tooltip="Is there growing demand for this company's product or service?">Future Market Demand</span></label>
-    <p id="text6" style="margin-top: 0; margin-bottom: 0;">Assess what customers, trends, and analysts say about future relevance.</p>
-  </div>
-
-  <div class="criteria" id="group7" onclick="toggleCriteria(7)">
-    <input type="checkbox" id="criteria7" style="display: none;">
-    <label for="criteria7">Economic Moat (Competitive Advantage)</label>
-    <button class="ai-help-btn" onclick="openAiHelp(event)">Define with AI help</button>
-    <p id="text7" style="margin-top: 0; margin-bottom: 0;">
-      <span class="moat-tag brand">Brand Power</span>
-      <span class="moat-tag network">Network Effects</span>
-      <span class="moat-tag tech">Patents/Tech</span>
-      <span class="moat-tag switching">Switching Costs</span>
-      <span class="moat-tag size">Size Advantage</span>
-      <br>Companies with strong competitive advantages can sustain profits longer.
-    </p>
-  </div>
-
-  <!-- Modal for Ticker Input -->
-  <div id="tickerModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <p id="modalMessage">Enter ticker symbol</p>
-      <input type="text" id="tickerInput" placeholder="example MSFT">
-      <button id="submitTicker">OK</button>
+  <header class="header">
+    <div class="header-content">
+      <h1>📊 Financial Criteria Checklist</h1>
     </div>
-  </div>
+    <div class="header-buttons">
+      <button class="header-button" id="translateBtn">Русский</button>
+      <button class="header-button" id="ivCalculatorBtn">IV Calculator</button>
+    </div>
+  </header>
 
-  <div class="extra-section">
-    <h2 id="basicKnowledgeTitle">🛠️ Basic Knowledge</h2>
-    <ul class="ratio-list">
-      <li id="peRatio"><strong>P/E Ratio</strong>: Price-to-Earnings. Measures share price relative to earnings per share. <em>Calculated as: Price ÷ EPS</em></li>
-      <li id="pegRatio"><strong>PEG Ratio</strong>: P/E to Growth. Adjusts P/E by growth rate. <em>Calculated as: P/E ÷ Earnings Growth %</em></li>
-      <li id="roeRatio"><strong>ROE</strong>: Return on Equity. Indicates how efficiently equity is used. <em>Calculated as: Net Income ÷ Shareholder's Equity</em></li>
-      <li id="roaRatio"><strong>ROA</strong>: Return on Assets. Measures profitability by total assets. <em>Calculated as: Net Income ÷ Total Assets</em></li>
-      <li id="deRatio"><strong>Debt/Equity</strong>: Shows leverage level. <em>Calculated as: Total Liabilities ÷ Shareholder's Equity</em></li>
-      <li id="dividendYield"><strong>Dividend Yield</strong>: Income from dividends. <em>Calculated as: Annual Dividend ÷ Share Price</em></li>
-      <li id="epsRatio"><strong>EPS</strong>: Earnings Per Share. Represents profitability per share. <em>Calculated as: Net Income ÷ Shares Outstanding</em></li>
-      <li id="pbRatio"><strong>Price-to-Book</strong>: Market value vs. book value. <em>Calculated as: Share Price ÷ Book Value per Share</em></li>
-    </ul>
-  </div>
+  <main class="wrap">
+    <div id="progressTracker">0 of 7 criteria selected</div>
 
-  <div class="extra-section">
-    <h2 id="usefulLinksTitle">🔗 Useful Links</h2>
-    <p id="stockAnalysisLink">
-      Website for free stock analysis: <a href="https://stockanalysis.com/?ref=pavlo" target="_blank">StockAnalysis.com</a><br>
-      My YouTube channel on investing: <a href="https://www.youtube.com/@PavloLomakin" target="_blank">YouTube.com/@PavloLomakin</a>
-    </p>
+    <div class="card">
+      <div class="criteria" id="group1" onclick="toggleCriteria(1)">
+        <input type="checkbox" id="criteria1" style="display: none;">
+        <label for="criteria1" style="margin-bottom: 3px;">Previous 5-Year Revenue Growth of 50% (CAGR 10%)</label>
+        <button class="check-btn" onclick="openTickerModal(event, 'revenue')">Check</button>
+        <p id="text1" style="margin-top: 0; margin-bottom: 0;">Think of a company like a football player or boxer—one that's already successful is more likely to win in the future than one that's not.</p>
+      </div>
 
-    <h2 id="recommendedBrokersTitle">🤝 Recommended Brokers</h2>
-    <ul class="broker-list">
-      <li id="ibkrLink">Interactive brokers (World wide) - <a href="https://ibkr.com/referral/pavlo272" target="_blank">ibkr.com</a></li>
-      <li id="questradeLink">Questrade (Canada) - <a href="https://start.questrade.com/?oaa_promo=515724004489095&s_cid=RAF14_share_link_refer_a_friend_email&utm_medium=share_link&utm_source=refer_a_friend&utm_campaign=RAF14&utm_content=personalized_link" target="_blank">questrade.com/registration</a> use code 515724004489095 to get 50$ for free</li>
-      <li id="robinhoodLink">Robinhood (USA) - <a href="https://robinhood.com/us/en/" target="_blank">robinhood.com</a></li>
-    </ul>
-  </div>
+      <div class="criteria" id="group2" onclick="toggleCriteria(2)">
+        <input type="checkbox" id="criteria2" style="display: none;">
+        <label for="criteria2" style="margin-bottom: 3px;">Debt to Equity (DE) Ratio Less Than 1.5</label>
+        <button class="check-btn" onclick="openTickerModal(event, 'debtToEquity')">Check</button>
+        <p id="text2" style="margin-top: 0; margin-bottom: 0;">Statistically, companies with lower debt tend to deliver better future results.</p>
+      </div>
+
+      <div class="criteria" id="group3" onclick="toggleCriteria(3)">
+        <input type="checkbox" id="criteria3" style="display: none;">
+        <label for="criteria3" style="margin-bottom: 3px;"><span class="tooltip" data-tooltip="Price/Earnings to Growth (PEG) is a ratio used to determine a stock's value while factoring in growth.">PEG</span> Ratio Under 1.5*</label>
+        <button class="check-btn" onclick="openTickerModal(event, 'peg')">Check</button>
+        <p id="text3" style="margin-top: 0; margin-bottom: 0;">Suggests reasonable stock pricing relative to growth potential.*For companies with economic moat - under 3.5</p>
+      </div>
+
+      <div class="criteria" id="group4" onclick="toggleCriteria(4)">
+        <input type="checkbox" id="criteria4" style="display: none;">
+        <label for="criteria4" style="margin-bottom: 3px;">Positive Cash Flow</label>
+        <button class="check-btn" onclick="openTickerModal(event, 'cashflow')">Check</button>
+        <p id="text4" style="margin-top: 0; margin-bottom: 0;">Consistent cash inflow gives a company a safety buffer during market downturns.</p>
+      </div>
+
+      <div class="criteria" id="group5" onclick="toggleCriteria(5)">
+        <input type="checkbox" id="criteria5" style="display: none;">
+        <label for="criteria5" style="margin-bottom: 3px;">Return on Equity (ROE) Above 10%</label>
+        <button class="check-btn" onclick="openTickerModal(event, 'roe')">Check</button>
+        <p id="text5" style="margin-top: 0; margin-bottom: 0;">Strong ROE means the company turns $10 of investor capital into $11 or more.</p>
+      </div>
+
+      <div class="criteria" id="group6" onclick="toggleCriteria(6)">
+        <input type="checkbox" id="criteria6" style="display: none;">
+        <label for="criteria6" style="margin-bottom: 3px;"><span class="tooltip" data-tooltip="Is there growing demand for this company's product or service?">Future Market Demand</span></label>
+        <p id="text6" style="margin-top: 0; margin-bottom: 0;">Assess what customers, trends, and analysts say about future relevance.</p>
+      </div>
+
+      <div class="criteria" id="group7" onclick="toggleCriteria(7)">
+        <input type="checkbox" id="criteria7" style="display: none;">
+        <label for="criteria7">Economic Moat (Competitive Advantage)</label>
+        <button class="ai-help-btn" onclick="openAiHelp(event)">Define with AI help</button>
+        <p id="text7" style="margin-top: 0; margin-bottom: 0;">
+          <span class="moat-tag brand">Brand Power</span>
+          <span class="moat-tag network">Network Effects</span>
+          <span class="moat-tag tech">Patents/Tech</span>
+          <span class="moat-tag switching">Switching Costs</span>
+          <span class="moat-tag size">Size Advantage</span>
+          <br>Companies with strong competitive advantages can sustain profits longer.
+        </p>
+      </div>
+    </div>
+
+    <!-- Modal for Ticker Input -->
+    <div id="tickerModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="modalMessage">Enter ticker symbol</p>
+        <input type="text" id="tickerInput" placeholder="example MSFT">
+        <button id="submitTicker">OK</button>
+      </div>
+    </div>
+
+    <div class="extra-section">
+      <h2 id="basicKnowledgeTitle">🛠️ Basic Knowledge</h2>
+      <ul class="ratio-list">
+        <li id="peRatio"><strong>P/E Ratio</strong>: Price-to-Earnings. Measures share price relative to earnings per share. <em>Calculated as: Price ÷ EPS</em></li>
+        <li id="pegRatio"><strong>PEG Ratio</strong>: P/E to Growth. Adjusts P/E by growth rate. <em>Calculated as: P/E ÷ Earnings Growth %</em></li>
+        <li id="roeRatio"><strong>ROE</strong>: Return on Equity. Indicates how efficiently equity is used. <em>Calculated as: Net Income ÷ Shareholder's Equity</em></li>
+        <li id="roaRatio"><strong>ROA</strong>: Return on Assets. Measures profitability by total assets. <em>Calculated as: Net Income ÷ Total Assets</em></li>
+        <li id="deRatio"><strong>Debt/Equity</strong>: Shows leverage level. <em>Calculated as: Total Liabilities ÷ Shareholder's Equity</em></li>
+        <li id="dividendYield"><strong>Dividend Yield</strong>: Income from dividends. <em>Calculated as: Annual Dividend ÷ Share Price</em></li>
+        <li id="epsRatio"><strong>EPS</strong>: Earnings Per Share. Represents profitability per share. <em>Calculated as: Net Income ÷ Shares Outstanding</em></li>
+        <li id="pbRatio"><strong>Price-to-Book</strong>: Market value vs. book value. <em>Calculated as: Share Price ÷ Book Value per Share</em></li>
+      </ul>
+    </div>
+
+    <div class="extra-section">
+      <h2 id="usefulLinksTitle">🔗 Useful Links</h2>
+      <p id="stockAnalysisLink">
+        Website for free stock analysis: <a href="https://stockanalysis.com/?ref=pavlo" target="_blank">StockAnalysis.com</a><br>
+        My YouTube channel on investing: <a href="https://www.youtube.com/@PavloLomakin" target="_blank">YouTube.com/@PavloLomakin</a>
+      </p>
+
+      <h2 id="recommendedBrokersTitle">🤝 Recommended Brokers</h2>
+      <ul class="broker-list">
+        <li id="ibkrLink">Interactive brokers (World wide) - <a href="https://ibkr.com/referral/pavlo272" target="_blank">ibkr.com</a></li>
+        <li id="questradeLink">Questrade (Canada) - <a href="https://start.questrade.com/?oaa_promo=515724004489095&s_cid=RAF14_share_link_refer_a_friend_email&utm_medium=share_link&utm_source=refer_a_friend&utm_campaign=RAF14&utm_content=personalized_link" target="_blank">questrade.com/registration</a> use code 515724004489095 to get 50$ for free</li>
+        <li id="robinhoodLink">Robinhood (USA) - <a href="https://robinhood.com/us/en/" target="_blank">robinhood.com</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    © Stocks with Pavlo Lomakin
+  </footer>
 
 <script>
   let translated = false;
@@ -533,13 +617,16 @@
 
     document.getElementById("recommendedBrokersTitle").textContent = "🤝 Рекомендуемые брокеры";
     document.getElementById("ibkrLink").innerHTML = `Interactive brokers (По всему миру) - <a href="https://ibkr.com/referral/pavlo272" target="_blank">ibkr.com</a>`;
-    document.getElementById("questradeLink").innerHTML = `Questrade (Канада) - <a href="https://login.questrade.com/registration" target="_blank">questrade.com/registration</a> используйте код 515724004489095, чтобы получить 50$ бесплатно`;
+    document.getElementById("questradeLink").innerHTML = `Questrade (Канада) - <a href="https://start.questrade.com/?oaa_promo=515724004489095&s_cid=RAF14_share_link_refer_a_friend_email&utm_medium=share_link&utm_source=refer_a_friend&utm_campaign=RAF14&utm_content=personalized_link" target="_blank">questrade.com/registration</a> используйте код 515724004489095, чтобы получить 50$ бесплатно`;
     document.getElementById("robinhoodLink").innerHTML = `Robinhood (США) - <a href="https://robinhood.com/us/en/" target="_blank">robinhood.com</a>`;
 
     document.querySelector("h1").textContent = "📊 Чек-лист Финансовых Критериев";
     document.getElementById("translateBtn").textContent = "English";
     document.getElementById("ivCalculatorBtn").textContent = "IV Калькулятор";
     document.getElementById("progressTracker").textContent = document.getElementById("progressTracker").textContent.replace("criteria", "критериев");
+    
+    // Update footer
+    document.querySelector("footer").textContent = "© Акции с Павлом Ломакиным";
   }
 
   function revertPage() {
@@ -611,13 +698,16 @@
 
     document.getElementById("recommendedBrokersTitle").textContent = "🤝 Recommended Brokers";
     document.getElementById("ibkrLink").innerHTML = `Interactive brokers (World wide) - <a href="https://ibkr.com/referral/pavlo272" target="_blank">ibkr.com</a>`;
-    document.getElementById("questradeLink").innerHTML = `Questrade (Canada) - <a href="https://login.questrade.com/registration" target="_blank">questrade.com/registration</a> use code 515724004489095 to get 50$ for free`;
+    document.getElementById("questradeLink").innerHTML = `Questrade (Canada) - <a href="https://start.questrade.com/?oaa_promo=515724004489095&s_cid=RAF14_share_link_refer_a_friend_email&utm_medium=share_link&utm_source=refer_a_friend&utm_campaign=RAF14&utm_content=personalized_link" target="_blank">questrade.com/registration</a> use code 515724004489095 to get 50$ for free`;
     document.getElementById("robinhoodLink").innerHTML = `Robinhood (USA) - <a href="https://robinhood.com/us/en/" target="_blank">robinhood.com</a>`;
 
     document.querySelector("h1").textContent = "📊 Financial Criteria Checklist";
     document.getElementById("translateBtn").textContent = "Русский";
     document.getElementById("ivCalculatorBtn").textContent = "IV Calculator";
     document.getElementById("progressTracker").textContent = document.getElementById("progressTracker").textContent.replace("критериев", "criteria");
+    
+    // Revert footer
+    document.querySelector("footer").textContent = "© Stocks with Pavlo Lomakin";
   }
 
   // Modal functionality
