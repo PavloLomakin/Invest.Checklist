@@ -400,14 +400,14 @@
   <div class="extra-section">
     <h2 id="usefulLinksTitle">🔗 Useful Links</h2>
     <p id="stockAnalysisLink">
-      Website for free stock analysis: <a href="https://stockanalysis.com/" target="_blank">StockAnalysis.com</a><br>
+      Website for free stock analysis: <a href="https://stockanalysis.com/?ref=pavlo" target="_blank">StockAnalysis.com</a><br>
       My YouTube channel on investing: <a href="https://www.youtube.com/@PavloLomakin" target="_blank">YouTube.com/@PavloLomakin</a>
     </p>
 
     <h2 id="recommendedBrokersTitle">🤝 Recommended Brokers</h2>
     <ul class="broker-list">
       <li id="ibkrLink">Interactive brokers (World wide) - <a href="https://ibkr.com/referral/pavlo272" target="_blank">ibkr.com</a></li>
-      <li id="questradeLink">Questrade (Canada) - <a href="https://login.questrade.com/registration" target="_blank">questrade.com/registration</a> use code 515724004489095 to get 50$ for free</li>
+      <li id="questradeLink">Questrade (Canada) - <a href="https://start.questrade.com/?oaa_promo=515724004489095&s_cid=RAF14_share_link_refer_a_friend_email&utm_medium=share_link&utm_source=refer_a_friend&utm_campaign=RAF14&utm_content=personalized_link" target="_blank">questrade.com/registration</a> use code 515724004489095 to get 50$ for free</li>
       <li id="robinhoodLink">Robinhood (USA) - <a href="https://robinhood.com/us/en/" target="_blank">robinhood.com</a></li>
     </ul>
   </div>
@@ -526,7 +526,7 @@
 
     document.getElementById("usefulLinksTitle").textContent = "🔗 Полезные ссылки";
     document.getElementById("stockAnalysisLink").innerHTML = `
-      Веб-сайт для бесплатного Анализа Акций: <a href="https://stockanalysis.com/" target="_blank">StockAnalysis.com</a><br>
+      Веб-сайт для бесплатного Анализа Акций: <a href="https://stockanalysis.com/?ref=pavlo" target="_blank">StockAnalysis.com</a><br>
       Мой ютуб канал о Инвестициях: <a href="https://www.youtube.com/@PavloLomakin" target="_blank">YouTube.com/@PavloLomakin</a><br>
       🧵 Делюсь мыслями и идеями в Threads <a href="https://www.threads.net/@pavlo.lomakin" target="_blank">threads.net/@pavlo.lomakin</a>
     `;
@@ -605,7 +605,7 @@
 
     document.getElementById("usefulLinksTitle").textContent = "🔗 Useful Links";
     document.getElementById("stockAnalysisLink").innerHTML = `
-      Website for free stock analysis: <a href="https://stockanalysis.com/" target="_blank">StockAnalysis.com</a><br>
+      Website for free stock analysis: <a href="https://stockanalysis.com/?ref=pavlo" target="_blank">StockAnalysis.com</a><br>
       My YouTube channel on investing: <a href="https://www.youtube.com/@PavloLomakin" target="_blank">YouTube.com/@PavloLomakin</a>
     `;
 
@@ -643,19 +643,19 @@
       
       switch(currentCheckType) {
         case 'revenue':
-          url = `https://stockanalysis.com/stocks/${ticker}/financials/`;
+          url = `https://stockanalysis.com/stocks/${ticker}/financials/?ref=pavlo`;
           break;
         case 'debtToEquity':
-          url = `https://stockanalysis.com/stocks/${ticker}/financials/ratios/?p=quarterly`;
+          url = `https://stockanalysis.com/stocks/${ticker}/financials/ratios/?p=quarterly?ref=pavlo`;
           break;
         case 'peg':
-          url = `https://stockanalysis.com/stocks/${ticker}/financials/ratios/?p=quarterly`;
+          url = `https://stockanalysis.com/stocks/${ticker}/financials/ratios/?p=quarterly?ref=pavlo`;
           break;
         case 'cashflow':
-          url = `https://stockanalysis.com/stocks/${ticker}/financials/cash-flow-statement/?p=quarterly`;
+          url = `https://stockanalysis.com/stocks/${ticker}/financials/cash-flow-statement/?p=quarterly?ref=pavlo`;
           break;
         case 'roe':
-          url = `https://stockanalysis.com/stocks/${ticker}/financials/ratios/?p=quarterly`;
+          url = `https://stockanalysis.com/stocks/${ticker}/financials/ratios/?p=quarterly?ref=pavlo`;
           break;
       }
       
@@ -689,7 +689,7 @@
   });
 
   document.getElementById("ivCalculatorBtn").addEventListener("click", () => {
-    window.open("http://iv-calculator.wuaze.com/", "_blank");
+    window.open("https://pavlolomakin.github.io/IV-calculator/", "_blank");
   });
 </script>
 </body>
