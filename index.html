@@ -195,12 +195,12 @@
       padding-bottom: 10px;
     }
 
-    .ratio-list, .broker-list {
+    .broker-list, .useful-links {
       margin: 0;
       padding-left: 20px;
     }
 
-    .ratio-list li, .broker-list li {
+    .broker-list li, .useful-links li {
       margin-bottom: 10px;
     }
 
@@ -281,7 +281,7 @@
     }
 
     /* AI Help Button Styles */
-    .ai-help-btn {
+    .ai-help-btn, .calc-btn {
       position: absolute;
       right: 15px;
       top: 15px;
@@ -293,9 +293,11 @@
       border-radius: 4px;
       cursor: pointer;
       transition: var(--transition);
+      text-decoration: none;
+      display: inline-block;
     }
 
-    .ai-help-btn:hover {
+    .ai-help-btn:hover, .calc-btn:hover {
       background-color: var(--dark-grey-hover);
     }
 
@@ -402,55 +404,42 @@
   </header>
 
   <main class="wrap">
-    <div id="progressTracker">0 of 7 criteria selected</div>
+    <div id="progressTracker">0 of 8 criteria selected</div>
 
     <div class="card">
       <div class="criteria" id="group1" onclick="toggleCriteria(1)">
         <input type="checkbox" id="criteria1" style="display: none;">
-        <label for="criteria1" style="margin-bottom: 3px;">Previous 5-Year Revenue Growth of 50% (CAGR 10%)</label>
+        <label for="criteria1" style="margin-bottom: 3px;">Company revenue trend should be upward for at least 3 quarters</label>
         <button class="check-btn" onclick="openTickerModal(event, 'revenue')">Check</button>
-        <p id="text1" style="margin-top: 0; margin-bottom: 0;">Think of a company like a football player or boxer—one that's already successful is more likely to win in the future than one that's not.</p>
+        <p id="text1" style="margin-top: 0; margin-bottom: 0;">Steady growth in revenue indicates a healthy, expanding business.</p>
       </div>
 
       <div class="criteria" id="group2" onclick="toggleCriteria(2)">
         <input type="checkbox" id="criteria2" style="display: none;">
-        <label for="criteria2" style="margin-bottom: 3px;">Debt to Equity (DE) Ratio Less Than 1.5</label>
-        <button class="check-btn" onclick="openTickerModal(event, 'debtToEquity')">Check</button>
-        <p id="text2" style="margin-top: 0; margin-bottom: 0;">Statistically, companies with lower debt tend to deliver better future results.</p>
+        <label for="criteria2" style="margin-bottom: 3px;">Positive Cash Flow for at least 3 quarters</label>
+        <button class="check-btn" onclick="openTickerModal(event, 'cashflow')">Check</button>
+        <p id="text2" style="margin-top: 0; margin-bottom: 0;">Consistent cash inflow gives a company a safety buffer during market downturns.</p>
       </div>
 
       <div class="criteria" id="group3" onclick="toggleCriteria(3)">
         <input type="checkbox" id="criteria3" style="display: none;">
-        <label for="criteria3" style="margin-bottom: 3px;"><span class="tooltip" data-tooltip="Price/Earnings to Growth (PEG) is a ratio used to determine a stock's value while factoring in growth.">PEG</span> Ratio Under 1.5*</label>
-        <button class="check-btn" onclick="openTickerModal(event, 'peg')">Check</button>
-        <p id="text3" style="margin-top: 0; margin-bottom: 0;">Suggests reasonable stock pricing relative to growth potential.*For companies with economic moat - under 3.5</p>
+        <label for="criteria3" style="margin-bottom: 3px;">Debt to Equity (DE) Ratio Less Than 1.5</label>
+        <button class="check-btn" onclick="openTickerModal(event, 'debtToEquity')">Check</button>
+        <p id="text3" style="margin-top: 0; margin-bottom: 0;">Statistically, companies with lower debt tend to deliver better future results.</p>
       </div>
 
       <div class="criteria" id="group4" onclick="toggleCriteria(4)">
         <input type="checkbox" id="criteria4" style="display: none;">
-        <label for="criteria4" style="margin-bottom: 3px;">Positive Cash Flow</label>
-        <button class="check-btn" onclick="openTickerModal(event, 'cashflow')">Check</button>
-        <p id="text4" style="margin-top: 0; margin-bottom: 0;">Consistent cash inflow gives a company a safety buffer during market downturns.</p>
+        <label for="criteria4" style="margin-bottom: 3px;">Return on Invested Capital (ROIC) Above 10%</label>
+        <button class="check-btn" onclick="openTickerModal(event, 'roic')">Check</button>
+        <p id="text4" style="margin-top: 0; margin-bottom: 0;">ROIC measures how well a company generates returns from its capital investments.</p>
       </div>
 
       <div class="criteria" id="group5" onclick="toggleCriteria(5)">
         <input type="checkbox" id="criteria5" style="display: none;">
-        <label for="criteria5" style="margin-bottom: 3px;">Return on Equity (ROE) Above 10%</label>
-        <button class="check-btn" onclick="openTickerModal(event, 'roe')">Check</button>
-        <p id="text5" style="margin-top: 0; margin-bottom: 0;">Strong ROE means the company turns $10 of investor capital into $11 or more.</p>
-      </div>
-
-      <div class="criteria" id="group6" onclick="toggleCriteria(6)">
-        <input type="checkbox" id="criteria6" style="display: none;">
-        <label for="criteria6" style="margin-bottom: 3px;"><span class="tooltip" data-tooltip="Is there growing demand for this company's product or service?">Future Market Demand</span></label>
-        <p id="text6" style="margin-top: 0; margin-bottom: 0;">Assess what customers, trends, and analysts say about future relevance.</p>
-      </div>
-
-      <div class="criteria" id="group7" onclick="toggleCriteria(7)">
-        <input type="checkbox" id="criteria7" style="display: none;">
-        <label for="criteria7">Economic Moat (Competitive Advantage)</label>
+        <label for="criteria5">Economic Moat (Competitive Advantage) - at least medium</label>
         <button class="ai-help-btn" onclick="openAiHelp(event)">Define with AI help</button>
-        <p id="text7" style="margin-top: 0; margin-bottom: 0;">
+        <p id="text5" style="margin-top: 0; margin-bottom: 0;">
           <span class="moat-tag brand">Brand Power</span>
           <span class="moat-tag network">Network Effects</span>
           <span class="moat-tag tech">Patents/Tech</span>
@@ -458,6 +447,26 @@
           <span class="moat-tag size">Size Advantage</span>
           <br>Companies with strong competitive advantages can sustain profits longer.
         </p>
+      </div>
+
+      <div class="criteria" id="group6" onclick="toggleCriteria(6)">
+        <input type="checkbox" id="criteria6" style="display: none;">
+        <label for="criteria6" style="margin-bottom: 3px;"><span class="tooltip" data-tooltip="Price/Earnings to Growth (PEG) used to determine a stock's value while factoring in growth.">PEG</span> Ratio Under 1.5 or Below Historical Company Average</label>
+        <button class="check-btn" onclick="openTickerModal(event, 'peg')">Check</button>
+        <p id="text6" style="margin-top: 0; margin-bottom: 0;">Suggests reasonable stock pricing relative to growth potential.</p>
+      </div>
+
+      <div class="criteria" id="group7" onclick="toggleCriteria(7)">
+        <input type="checkbox" id="criteria7" style="display: none;">
+        <label for="criteria7" style="margin-bottom: 3px;"><span class="tooltip" data-tooltip="Is there growing demand for this company's product or service?">Future Market Demand (Increase Potential)</span></label>
+        <p id="text7" style="margin-top: 0; margin-bottom: 0;">Assess what customers, trends, and analysts say about future relevance.</p>
+      </div>
+
+      <div class="criteria" id="group8" onclick="toggleCriteria(8)">
+        <input type="checkbox" id="criteria8" style="display: none;">
+        <label for="criteria8" style="margin-bottom: 3px;">Intrinsic Value (IV) Should Show Upside</label>
+        <a class="calc-btn" href="https://pavlolomakin.github.io/IV-calculator/" target="_blank">Calculate → Calculator</a>
+        <p id="text8" style="margin-top: 0; margin-bottom: 0;">The stock should be trading below its calculated intrinsic value for potential upside.</p>
       </div>
     </div>
 
@@ -472,24 +481,19 @@
     </div>
 
     <div class="extra-section">
-      <h2 id="basicKnowledgeTitle">🛠️ Basic Knowledge</h2>
-      <ul class="ratio-list">
-        <li id="peRatio"><strong>P/E Ratio</strong>: Price-to-Earnings. Measures share price relative to earnings per share. <em>Calculated as: Price ÷ EPS</em></li>
-        <li id="pegRatio"><strong>PEG Ratio</strong>: P/E to Growth. Adjusts P/E by growth rate. <em>Calculated as: P/E ÷ Earnings Growth %</em></li>
-        <li id="roeRatio"><strong>ROE</strong>: Return on Equity. Indicates how efficiently equity is used. <em>Calculated as: Net Income ÷ Shareholder's Equity</em></li>
-        <li id="roaRatio"><strong>ROA</strong>: Return on Assets. Measures profitability by total assets. <em>Calculated as: Net Income ÷ Total Assets</em></li>
-        <li id="deRatio"><strong>Debt/Equity</strong>: Shows leverage level. <em>Calculated as: Total Liabilities ÷ Shareholder's Equity</em></li>
-        <li id="dividendYield"><strong>Dividend Yield</strong>: Income from dividends. <em>Calculated as: Annual Dividend ÷ Share Price</em></li>
-        <li id="epsRatio"><strong>EPS</strong>: Earnings Per Share. Represents profitability per share. <em>Calculated as: Net Income ÷ Shares Outstanding</em></li>
-        <li id="pbRatio"><strong>Price-to-Book</strong>: Market value vs. book value. <em>Calculated as: Share Price ÷ Book Value per Share</em></li>
-      </ul>
-    </div>
-
-    <div class="extra-section">
       <h2 id="usefulLinksTitle">🔗 Useful Links</h2>
       <p id="stockAnalysisLink">
-        Website for free stock analysis: <a href="https://stockanalysis.com/?ref=pavlo" target="_blank">StockAnalysis.com</a><br>
-        My YouTube channel on investing: <a href="https://www.youtube.com/@PavloLomakin" target="_blank">YouTube.com/@PavloLomakin</a>
+        🎯 Website for free stock analysis: <a href="https://stockanalysis.com/?ref=pavlo" target="_blank">StockAnalysis.com</a><br>
+        <br>
+        🧪 Portfolio Testing: <a href="https://testfol.io/" target="_blank">testfol.io</a><br>
+        🏦 Where Funds Invest: <a href="https://www.dataroma.com/m/home.php" target="_blank">dataroma.com</a><br>
+        📈 Asset Class Returns (15 Years): <a href="https://novelinvestor.com/asset-class-returns/" target="_blank">novelinvestor.com/asset-class-returns</a><br>
+        🌍 International Market Returns (15 Years): <a href="https://novelinvestor.com/international-stock-market-performance/" target="_blank">novelinvestor.com/international-stock-market-performance</a><br>
+        📊 S&P 500 & Economic Statistics: <a href="https://www.multpl.com/" target="_blank">multpl.com</a><br>
+        🏭 S&P 500 Sector Returns (15 Years): <a href="https://novelinvestor.com/sector-performance/" target="_blank">novelinvestor.com/sector-performance</a><br>
+        <br>
+        ▶️ My YouTube channel on investing: <a href="https://www.youtube.com/@PavloLomakin" target="_blank">YouTube.com/@PavloLomakin</a><br>
+        💬 Suggestions & Questions: <a href="mailto:talkostocks@gmail.com">talkostocks@gmail.com</a><br>
       </p>
 
       <h2 id="recommendedBrokersTitle">🤝 Recommended Brokers</h2>
@@ -507,7 +511,7 @@
 
 <script>
   let translated = false;
-  let totalCriteria = 7;
+  let totalCriteria = 8;
   let currentCheckType = '';
 
   function toggleCriteria(index) {
@@ -553,32 +557,36 @@
   function translatePage() {
     const translations = [
       {
-        label: "Рост выручки за последние 5 лет на 50% (сред. 10%/год)",
-        text: "Подумайте о компании как о футболисте — тот, кто забивал 20 голов за сезон, скорее всего, будет забивать и в будущем."
+        label: "Тренд оборота компании должен быть восходящим 3 квартала минимум",
+        text: "Устойчивый рост выручки указывает на здоровый, развивающийся бизнес."
       },
       {
-        label: "Коэффициент долга к капиталу менее 1.5",
-        text: "Статистически компании с меньшим уровнем долга показывают лучшие результаты в будущем."
-      },
-      {
-        label: "<span class='tooltip' data-tooltip='Коэффициент PEG помогает определить стоимость акций с учётом потенциального роста.'>Коэффициент PEG менее 1.5* </span>",
-        text: "Указывает на разумную цену акций по отношению к потенциалу роста. *-Для компаний с экономическим рвом - до 3.5"
-      },
-      {
-        label: "Положительный денежный поток",
+        label: "Положительный Cash Flow 3 квартала минимум",
         text: "Положительный денежный поток даёт компании запас прочности в кризис."
       },
       {
-        label: "ROE выше 10%",
-        text: "Высокий ROE показывает, что компания превращает инвестиции в значительную прибыль."
+        label: "Долг компании должен быть - D/E ниже 1.5",
+        text: "Статистически компании с меньшим уровнем долга показывают лучшие результаты в будущем."
       },
       {
-        label: "<span class='tooltip' data-tooltip='Есть ли растущий спрос на продукт или услугу компании?'>Будущий спрос на рынке</span>",
+        label: "ROIC выше 10%",
+        text: "ROIC показывает, насколько хорошо компания генерирует доходность от вложенного капитала."
+      },
+      {
+        label: "Иметь широкий экономический ров - средний как минимум",
+        text: `<span class="moat-tag brand">Сила бренда</span> <span class="moat-tag network">Сетевые эффекты</span> <span class="moat-tag tech">Патенты/Технологии</span> <span class="moat-tag switching">Затраты на смену</span> <span class="moat-tag size">Преимущество размера</span><br>Компании с сильными конкурентными преимуществами могут дольше сохранять прибыль.`
+      },
+      {
+        label: "<span class='tooltip' data-tooltip='Коэффициент PEG помогает определить стоимость акций с учётом потенциального роста.'>PEG должен быть ниже 1.5 или ниже исторического значения компании</span>",
+        text: "Указывает на разумную цену акций по отношению к потенциалу роста."
+      },
+      {
+        label: "<span class='tooltip' data-tooltip='Есть ли растущий спрос на продукт или услугу компании?'>Future Market Demand (increase potential)</span>",
         text: "Оцени спрос: что говорят клиенты, отрасль, аналитики?"
       },
       {
-        label: "Экономический ров (Конкурентное преимущество)",
-        text: "<span class='moat-tag brand'>Сила бренда</span> <span class='moat-tag network'>Сетевые эффекты</span> <span class='moat-tag tech'>Патенты/Технологии</span> <span class='moat-tag switching'>Затраты на смену</span> <span class='moat-tag size'>Преимущество размера</span><br>Компании с сильными конкурентными преимуществами могут дольше сохранять прибыль."
+        label: "IV компании должен показывать upside",
+        text: "Акция должна торговаться ниже своей расчетной внутренней стоимости для потенциального роста."
       }
     ];
 
@@ -595,33 +603,22 @@
       btn.textContent = "Проверить";
     });
 
-    document.getElementById("basicKnowledgeTitle").textContent = "🛠️ Базовые знания";
-
-    const translatedRatios = [
-      "P/E: Цена к прибыли: отражает цену акции относительно прибыли. Формула: Цена ÷ Прибыль на акцию.",
-      "PEG: учитывает рост при оценке. Формула: P/E ÷ Рост прибыли (%).",
-      "ROE: доходность на капитал. Формула: Чистая прибыль ÷ Собственный капитал.",
-      "ROA: доходность на активы. Формула: Чистая прибыль ÷ Активы.",
-      "Debt/Equity: уровень задолженности. Формула: Обязательства ÷ Собственный капитал.",
-      "Dividend Yield: доход от дивидендов. Формула: Годовой дивиденд ÷ Цена акции.",
-      "EPS: Прибыль на акцию: прибыль на одну акцию. Формула: Чистая прибыль ÷ Кол-во акций.",
-      "Price-to-Book: Цена к балансовой стоимости: рыночная цена к стоимости. Формула: Цена ÷ Балансовая стоимость на акцию."
-    ];
-    
-    document.getElementById("peRatio").textContent = translatedRatios[0];
-    document.getElementById("pegRatio").textContent = translatedRatios[1];
-    document.getElementById("roeRatio").textContent = translatedRatios[2];
-    document.getElementById("roaRatio").textContent = translatedRatios[3];
-    document.getElementById("deRatio").textContent = translatedRatios[4];
-    document.getElementById("dividendYield").textContent = translatedRatios[5];
-    document.getElementById("epsRatio").textContent = translatedRatios[6];
-    document.getElementById("pbRatio").textContent = translatedRatios[7];
+    // Update the IV calculator button text
+    document.querySelector('.calc-btn').textContent = "Определить → IV Калькулятор";
 
     document.getElementById("usefulLinksTitle").textContent = "🔗 Полезные ссылки";
     document.getElementById("stockAnalysisLink").innerHTML = `
-      Веб-сайт для бесплатного Анализа Акций: <a href="https://stockanalysis.com/?ref=pavlo" target="_blank">StockAnalysis.com</a><br>
-      Мой ютуб канал о Инвестициях: <a href="https://www.youtube.com/@PavloLomakin" target="_blank">YouTube.com/@PavloLomakin</a><br>
-      🧵 Делюсь мыслями и идеями в Threads <a href="https://www.threads.net/@pavlo.lomakin" target="_blank">threads.net/@pavlo.lomakin</a>
+      🎯 Веб-сайт для бесплатного Анализа Акций: <a href="https://stockanalysis.com/?ref=pavlo" target="_blank">StockAnalysis.com</a><br>
+      <br>
+      🧪 Тестирование инвест-портфелей: <a href='https://testfol.io/' target='_blank'>testfol.io</a><br>
+      🏦 Куда инвестируют СуперИнвесторы?: <a href='https://www.dataroma.com/m/home.php' target='_blank'>dataroma.com</a><br>
+      📈 Доходность Классов активов за последние 15 лет: <a href='https://novelinvestor.com/asset-class-returns/' target='_blank'>novelinvestor.com/asset-class-returns</a><br>
+      🌍 Доходность Международных рынков за последние 15 лет: <a href='https://novelinvestor.com/international-stock-market-performance/' target='_blank'>novelinvestor.com/international-stock-market-performance</a><br>
+      📊 Статистика по индексу S&P 500, процентным ставкам и экономике США/мира: <a href='https://www.multpl.com/' target='_blank'>multpl.com</a><br>
+      🏭 Доходность секторов акций S&P за последние 15 лет: <a href='https://novelinvestor.com/sector-performance/' target='_blank'>novelinvestor.com/sector-performance</a><br>
+      <br>
+      ▶️ Мой ютуб канал о Инвестициях: <a href="https://www.youtube.com/@PavloLomakin" target="_blank">YouTube.com/@PavloLomakin</a><br>
+      💬 Предложения и Вопросы: <a href='mailto:talkostocks@gmail.com'>talkostocks@gmail.com</a><br>
     `;
 
     document.getElementById("recommendedBrokersTitle").textContent = "🤝 Рекомендуемые брокеры";
@@ -632,7 +629,13 @@
     document.querySelector("h1").textContent = "📊 Чек-лист Финансовых Критериев";
     document.getElementById("translateBtn").textContent = "English";
     document.getElementById("ivCalculatorBtn").textContent = "IV Калькулятор";
-    document.getElementById("progressTracker").textContent = document.getElementById("progressTracker").textContent.replace("criteria", "критериев");
+    
+    // Update progress tracker text correctly
+    const progressText = document.getElementById("progressTracker").textContent;
+    const match = progressText.match(/(\d+) of (\d+)/);
+    if (match) {
+      document.getElementById("progressTracker").textContent = `${match[1]} из ${match[2]} критериев выбрано`;
+    }
     
     // Update footer
     document.querySelector("footer").textContent = "© Акции с Павлом Ломакиным";
@@ -640,28 +643,30 @@
 
   function revertPage() {
     const labelsEn = [
-      "Previous 5-Year Revenue Growth of 50%",
+      "Company revenue trend should be upward for at least 3 quarters",
+      "Positive Cash Flow for at least 3 quarters",
       "Debt to Equity (DE) Ratio Less Than 1.5",
-      "<span class='tooltip' data-tooltip='Price/Earnings to Growth (PEG) is a ratio used to determine a stock's value while factoring in growth.'>PEG</span> Ratio Under 1.5",
-      "Positive Cash Flow",
-      "Return on Equity (ROE) Above 10%",
-      "<span class='tooltip' data-tooltip='Is there growing demand for this company's product or service?'>Future Market Demand</span>",
-      "Economic Moat (Competitive Advantage)"
+      "Return on Invested Capital (ROIC) Above 10%",
+      "Economic Moat (Competitive Advantage) - at least medium",
+      "<span class='tooltip' data-tooltip='Price/Earnings to Growth (PEG) is a ratio used to determine a stock's value while factoring in growth.'>PEG</span> Ratio Under 1.5 or Below Historical Company Average",
+      "<span class='tooltip' data-tooltip='Is there growing demand for this company's product or service?'>Future Market Demand (Increase Potential)</span>",
+      "Intrinsic Value (IV) Should Show Upside"
     ];
 
     const textsEn = [
-      "Think of a company like a football player or boxer—one that's already successful is more likely to win in the future than one that's not.",
-      "Statistically, companies with lower debt tend to deliver better future results.",
-      "Suggests reasonable stock pricing relative to growth potential.",
+      "Steady growth in revenue indicates a healthy, expanding business.",
       "Consistent cash inflow gives a company a safety buffer during market downturns.",
-      "Strong ROE means the company turns $10 of investor capital into $11 or more.",
-      "Assess what customers, trends, and analysts say about future relevance.",
+      "Statistically, companies with lower debt tend to deliver better future results.",
+      "ROIC measures how well a company generates returns from its capital investments.",
       `<span class="moat-tag brand">Brand Power</span>
       <span class="moat-tag network">Network Effects</span>
       <span class="moat-tag tech">Patents/Tech</span>
       <span class="moat-tag switching">Switching Costs</span>
       <span class="moat-tag size">Size Advantage</span>
-      <br>Companies with strong competitive advantages can sustain profits longer.`
+      <br>Companies with strong competitive advantages can sustain profits longer.`,
+      "Suggests reasonable stock pricing relative to growth potential.",
+      "Assess what customers, trends, and analysts say about future relevance.",
+      "The stock should be trading below its calculated intrinsic value for potential upside."
     ];
 
     labelsEn.forEach((label, i) => {
@@ -677,32 +682,22 @@
       btn.textContent = "Check";
     });
 
-    document.getElementById("basicKnowledgeTitle").textContent = "🛠️ Basic Knowledge";
-
-    const originalRatios = [
-      "P/E Ratio: Price-to-Earnings. Measures share price relative to earnings per share. Calculated as: Price ÷ EPS",
-      "PEG Ratio: P/E to Growth. Adjusts P/E by growth rate. Calculated as: P/E ÷ Earnings Growth %",
-      "ROE: Return on Equity. Indicates how efficiently equity is used. Calculated as: Net Income ÷ Shareholder's Equity",
-      "ROA: Return on Assets. Measures profitability by total assets. Calculated as: Net Income ÷ Total Assets",
-      "Debt/Equity: Shows leverage level. Calculated as: Total Liabilities ÷ Shareholder's Equity",
-      "Dividend Yield: Income from dividends. Calculated as: Annual Dividend ÷ Share Price",
-      "EPS: Earnings Per Share. Represents profitability per share. Calculated as: Net Income ÷ Shares Outstanding",
-      "Price-to-Book: Market value vs. book value. Calculated as: Share Price ÷ Book Value per Share"
-    ];
-    
-    document.getElementById("peRatio").textContent = originalRatios[0];
-    document.getElementById("pegRatio").textContent = originalRatios[1];
-    document.getElementById("roeRatio").textContent = originalRatios[2];
-    document.getElementById("roaRatio").textContent = originalRatios[3];
-    document.getElementById("deRatio").textContent = originalRatios[4];
-    document.getElementById("dividendYield").textContent = originalRatios[5];
-    document.getElementById("epsRatio").textContent = originalRatios[6];
-    document.getElementById("pbRatio").textContent = originalRatios[7];
+    // Revert the IV calculator button text
+    document.querySelector('.calc-btn').textContent = "Calculate → Calculator";
 
     document.getElementById("usefulLinksTitle").textContent = "🔗 Useful Links";
     document.getElementById("stockAnalysisLink").innerHTML = `
-      Website for free stock analysis: <a href="https://stockanalysis.com/?ref=pavlo" target="_blank">StockAnalysis.com</a><br>
-      My YouTube channel on investing: <a href="https://www.youtube.com/@PavloLomakin" target="_blank">YouTube.com/@PavloLomakin</a>
+      🎯 Website for free stock analysis: <a href="https://stockanalysis.com/?ref=pavlo" target="_blank">StockAnalysis.com</a><br>
+      <br>
+      🧪 Portfolio Testing: <a href="https://testfol.io/" target="_blank">testfol.io</a><br>
+      🏦 Where Funds Invest: <a href="https://www.dataroma.com/m/home.php" target="_blank">dataroma.com</a><br>
+      📈 Asset Class Returns (15 Years): <a href="https://novelinvestor.com/asset-class-returns/" target="_blank">novelinvestor.com/asset-class-returns</a><br>
+      🌍 International Market Returns (15 Years): <a href="https://novelinvestor.com/international-stock-market-performance/" target="_blank">novelinvestor.com/international-stock-market-performance</a><br>
+      📊 S&P 500 & Economic Statistics: <a href="https://www.multpl.com/" target="_blank">multpl.com</a><br>
+      🏭 S&P 500 Sector Returns (15 Years): <a href="https://novelinvestor.com/sector-performance/" target="_blank">novelinvestor.com/sector-performance</a><br>
+      <br>
+      ▶️ My YouTube channel on investing: <a href="https://www.youtube.com/@PavloLomakin" target="_blank">YouTube.com/@PavloLomakin</a><br>
+      💬 Suggestions & Questions: <a href="mailto:talkostocks@gmail.com">talkostocks@gmail.com</a><br>
     `;
 
     document.getElementById("recommendedBrokersTitle").textContent = "🤝 Recommended Brokers";
@@ -713,7 +708,13 @@
     document.querySelector("h1").textContent = "📊 Financial Criteria Checklist";
     document.getElementById("translateBtn").textContent = "Русский";
     document.getElementById("ivCalculatorBtn").textContent = "IV Calculator";
-    document.getElementById("progressTracker").textContent = document.getElementById("progressTracker").textContent.replace("критериев", "criteria");
+    
+    // Revert progress tracker text correctly
+    const progressText = document.getElementById("progressTracker").textContent;
+    const match = progressText.match(/(\d+) из (\d+)/);
+    if (match) {
+      document.getElementById("progressTracker").textContent = `${match[1]} of ${match[2]} criteria selected`;
+    }
     
     // Revert footer
     document.querySelector("footer").textContent = "© Stocks with Pavlo Lomakin";
@@ -744,16 +745,16 @@
         case 'revenue':
           url = `https://stockanalysis.com/stocks/${ticker}/financials/?ref=pavlo`;
           break;
-        case 'debtToEquity':
-          url = `https://stockanalysis.com/stocks/${ticker}/financials/ratios/?p=quarterly?ref=pavlo`;
-          break;
-        case 'peg':
-          url = `https://stockanalysis.com/stocks/${ticker}/financials/ratios/?p=quarterly?ref=pavlo`;
-          break;
         case 'cashflow':
           url = `https://stockanalysis.com/stocks/${ticker}/financials/cash-flow-statement/?p=quarterly?ref=pavlo`;
           break;
-        case 'roe':
+        case 'debtToEquity':
+          url = `https://stockanalysis.com/stocks/${ticker}/financials/ratios/?p=quarterly?ref=pavlo`;
+          break;
+        case 'roic':
+          url = `https://stockanalysis.com/stocks/${ticker}/financials/ratios/?p=quarterly?ref=pavlo`;
+          break;
+        case 'peg':
           url = `https://stockanalysis.com/stocks/${ticker}/financials/ratios/?p=quarterly?ref=pavlo`;
           break;
       }
@@ -781,10 +782,11 @@
   document.getElementById("translateBtn").addEventListener("click", () => {
     if (translated) {
       revertPage();
+      translated = false;
     } else {
       translatePage();
+      translated = true;
     }
-    translated = !translated;
   });
 
   document.getElementById("ivCalculatorBtn").addEventListener("click", () => {
